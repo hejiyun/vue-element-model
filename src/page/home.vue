@@ -12,8 +12,9 @@
               </el-breadcrumb>
             </el-col>
             <el-col :span="4" class="userinfo">
+              {{ sysUserName }}
                 <el-dropdown trigger="hover">
-                    <span class="el-dropdown-link userinfo-inner">{{sysUserName}}</span>
+                    <span class="el-dropdown-link userinfo-inner el-icon-caret-bottom"></span>
                     <el-dropdown-menu slot="dropdown">
                         <el-dropdown-item>我的消息</el-dropdown-item>
                         <el-dropdown-item>设置</el-dropdown-item>
@@ -24,16 +25,25 @@
         </el-col>
     <el-col :span="24" class="main">
       <aside :class="'menu-expanded'">
-        <!--导航菜单-->
+        <!--导航菜单, 三层嵌套结构-->
        <el-menu :default-active="$route.path" ref="bigmenu" class="el-menu-vertical-demo" background-color="#545c64" text-color="#fff" unique-opened router>
          <template v-for="(item,index) in $router.options.routes" v-if="!item.hidden && checkContains(item.name)">
            <el-submenu :index="index+''" v-if="!item.single">
              <template slot="title"><i :class="item.iconCls"></i>{{item.name}}</template>
-             <el-menu-item v-for="child in item.children" @click="addRouter(child, item.path +'/'+ child.path)" :index="item.path +'/'+ child.path" :key="item.path +'/'+ child.path" v-if="!child.hidden && checkContains(child.name)">{{child.name}}</el-menu-item>
+             <template v-for="child in item.children" :index="item.path +'/'+ child.path"  v-if="!child.hidden && checkContains(child.name)">
+                <el-menu-item v-if="!child.children" @click="addRouter(child, item.path +'/'+ child.path)" :index="item.path +'/'+ child.path">{{child.name}}</el-menu-item>
+                <el-submenu v-else  :index="item.path +'/'+ child.path">
+                  <template slot="title">{{ child.name }}</template>
+                    <el-menu-item v-for="sonChild in child.children" :key="sonChild.path" @click="addRouter(sonChild, item.path +'/'+ child.path + '/' + sonChild.path)" :index="item.path +'/'+ child.path + '/' + sonChild.path">{{ sonChild.name }}</el-menu-item>
+                </el-submenu>
+            </template>
            </el-submenu>
-           <router-link v-else v-for="child in item.children" :index="child.path" :key="child.path" :to="child.path">
-              <div @click="addRouter(child)" class="single-menu">{{child.name}}</div>
-           </router-link>
+           <el-menu-item v-else v-for="child in item.children" :index="child.path" :key="child.path" @click="addRouter(child)">
+            <i :class="item.iconCls"></i>
+            <span slot="title">{{ child.name }}</span>
+            <router-link :to="child.path">
+            </router-link>
+          </el-menu-item>
          </template>
        </el-menu>
      </aside>
@@ -49,7 +59,10 @@
          </el-row>
          <el-col :span="24" class="content-wrapper">
            <transition name="fade" mode="out-in">
-             <router-view></router-view>
+            <keep-alive>
+              <router-view v-if="$route.meta.keepAlive"></router-view>
+            </keep-alive>
+            <router-view v-if="!$route.meta.keepAlive"></router-view>
            </transition>
          </el-col>
        </div>
@@ -74,9 +87,10 @@ export default {
       treeArry: []
     };
   },
+  // 跳转匹配菜单栏路由
   watch: {
     $route(to, from) {
-      this.activepath = to.path;
+      this.activepath = to.path
     }
   },
   methods: {
@@ -95,7 +109,10 @@ export default {
     // 往tab页添加router
     addRouter(data, path) {
       const obj = Object.assign({}, data);
-      obj.path = path;
+      if (path) {
+        obj.path = path
+      }
+      console.log(obj)
       let add = true;
       for (let i = 0; i < this.arry.length; i++) {
         if (this.arry[i].path == obj.path) {
