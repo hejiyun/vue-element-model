@@ -112,7 +112,6 @@ export default {
       if (path) {
         obj.path = path
       }
-      console.log(obj)
       let add = true;
       for (let i = 0; i < this.arry.length; i++) {
         if (this.arry[i].path == obj.path) {
