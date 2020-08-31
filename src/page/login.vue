@@ -27,7 +27,8 @@
 
 <script>
 import { mapMutations } from "vuex";
-import * as commonApi from "api/common";
+import {loginIn} from "@/axios/common";
+import { setToken } from '@/util/auth'
 import * as types from "../store/mutation-types";
 export default {
   props: {},
@@ -70,42 +71,38 @@ export default {
         if (valid) {
           this.logining = true;
           // 模拟登录
-          setTimeout(() => {
-            const params = {
-              userName: this.ruleForm2.account,
-              password: this.ruleForm2.checkPass
-            };
-            sessionStorage.setItem("user", JSON.stringify(params)); // session存储用户信息
-            this.logining = false;
-            this.$router.push({ path: "/" });  // 去主页
-          }, 1000);
-          // const params = {
-          //   userName: this.ruleForm2.account,
-          //   password: this.ruleForm2.checkPass
-          // };
-          // commonApi.loginUserNo(params).then(res => {
-          //     let { data } = res;
-          //     this.logining = false;
-          //     if (data.success === true) {
-          //       this.$router.push({ path: "/declare/ordermanage" });  // 去主页
-          //       this.setTreeData(data.data); // 状态存储菜单节点
-          //       this.setToken(data.value); // 状态存储token
-          //       sessionStorage.setItem("user", JSON.stringify(params)); // session存储用户信息
-          //       sessionStorage.setItem("token", data.value); // session存储token
-          //       // 记住密码操作
-          //       if (this.checked) {
-          //         localStorage.setItem('userName', params.userName)
-          //         localStorage.setItem('password', params.password)
-          //       } else {
-          //         localStorage.clear();
-          //       }
-          //     } else {
-          //       this.$message.error(data.message);
-          //     }
-          //   })
-          //   .catch(() => {
-          //     this.$message.error("对不起,连接服务器异常,请稍后再试!");
-          //   });
+          const params = {
+            userCode: this.ruleForm2.account,
+            password: this.ruleForm2.checkPass,
+            systemId: 10
+          };
+          this
+          loginIn(params).then(res => {
+              let { data } = res;
+              this.logining = false;
+              console.log(res, data)
+              // 记住密码操作
+              if (this.checked) {
+                localStorage.setItem('userName', params.userCode)
+                localStorage.setItem('password', params.password)
+              } else {
+                localStorage.clear();
+              }
+              setToken(data.token)
+              this.setToken(data.token); // 状态存储token
+              this.setUsername(data.userName)
+              this.setPassword(params.password)
+              params['userName'] = data.userName
+              sessionStorage.setItem("user", JSON.stringify(params)); // session存储用户信息
+              sessionStorage.setItem("token", data.token); // session存储token
+              this.$router.push({ path: "/" });  // 去主页
+              // this.setTreeData(data.data); // 状态存储菜单节点
+            })
+            .catch((e) => {
+              console.log(e)
+               this.logining = false;
+              this.$message.error(e.data.errorMsg);
+            });
         } else {
           console.log("error submit!!");
           return false;

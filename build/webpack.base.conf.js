@@ -31,6 +31,7 @@ module.exports = {
       'api': resolve('src/api'),
       'config': resolve('src/config'),
       'common': resolve('src/components/common'),
+      '@util': resolve('src/util')
     }
   },
   module: {

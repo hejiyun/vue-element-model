@@ -9,10 +9,12 @@ import App from './App.vue';
 import 'font-awesome/css/font-awesome.min.css';
 import router from "./router";
 import VCharts from 'v-charts'
+import mloading from 'common/loading/index.js'
 
 Vue.use(ElementUI);
 Vue.use(Router);
 Vue.use(VCharts);
+Vue.use(mloading)
 
 Vue.config.productionTip = false
  /**

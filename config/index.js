@@ -11,29 +11,16 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-        '/api': {
-          // target: 'http://localhost:8080',
-          // target: 'http://10.65.2.40:8087',   // 张某某
-          // target: 'http://10.65.1.105:8087',  // 某某某
-          target: 'http://10.65.6.201:8087', // 测试端口
-          // target: 'http://10.65.6.1:8187', // 开发端口
-          changeOrigin: true,
-          secure: false,
-          pathRewrite: {
-            '^/api': ''
-          },
-          '/pdc': {
-            // target: 'http://localhost:8080',
-            // target: 'http://10.65.2.40:8087',   // 张某某
-            // target: 'http://10.65.1.105:8087',  // 某某某
-            target: 'http://10.65.6.201:8087', // 测试端口
-            // target: 'http://10.65.6.1:8187', // 开发端口
-            changeOrigin: true,
-            secure: false,
-            pathRewrite: {
-              '^/pdc': ''
-            },
-          }
+      '/': {
+        // target: 'http://localhost:8086',
+        // target: 'http://127.0.0.1:8082',
+        target: 'http://bwcaigou.baowei-inc.com',
+        // target: 'http://auth.baowei-inc.com',
+        changeOrigin: true,
+        secure: false,
+        pathRewrite: {
+          '': ''
+        }
         },
     },
 

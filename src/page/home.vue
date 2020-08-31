@@ -168,8 +168,8 @@ export default {
       this.activepath = this.$route.path;
       this.arry.push(obj);
     }
-    if (this.userName) {
-      this.sysUserName = this.userName;
+    if (this.username) {
+      this.sysUserName = this.username;
     } else {
       this.sysUserName = "admin";
     }
