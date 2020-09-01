@@ -9,8 +9,6 @@ function resolve (dir) {
   return path.join(__dirname, '..', dir)
 }
 
-
-
 module.exports = {
   context: path.resolve(__dirname, '../'),
   entry: {
@@ -31,7 +29,8 @@ module.exports = {
       'api': resolve('src/api'),
       'config': resolve('src/config'),
       'common': resolve('src/components/common'),
-      '@util': resolve('src/util')
+      '@util': resolve('src/util'),
+      '@page': resolve('src/page')
     }
   },
   module: {

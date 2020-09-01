@@ -1,6 +1,6 @@
 import * as types from '../mutation-types.js'
 
-//全局状态
+// 全局状态
 const state = {
   username: '',
   password: '',
@@ -9,7 +9,7 @@ const state = {
   token: ''
 }
 
-//getters 
+// getters
 const getters = {
   username: state => {
     return state.username
@@ -25,15 +25,15 @@ const getters = {
   },
   token: state => {
     return state.token
-  },
+  }
 }
 
 const mutations = {
-  [types.SET_USERNAME] (state, username) {
+  [types.SET_USERNAME](state, username) {
     state.username = username
   },
-  [types.SET_PASSWORD] (state, password) {
-  	state.password = password
+  [types.SET_PASSWORD](state, password) {
+    state.password = password
   },
   [types.SET_TABDATA](state, tabData) {
     state.tabData = tabData

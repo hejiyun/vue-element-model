@@ -1,91 +1,93 @@
 <template lang="html">
-<div class="home-container">
-  <el-row class="container">
-    <el-col :span="24" class="header">
-            <el-col :span="10" class="logo" :class="'logo-width'">
-              <el-col class="logo-img"></el-col>
-              <el-col class="logo-title">{{sysName}}</el-col>
-            </el-col>
-            <el-col :span="5" class="breadcrumb-container">
-              <el-breadcrumb separator="/" class="breadcrumb-inner">
-                <el-breadcrumb-item v-for="item in $route.matched" :key="item.path">{{ item.name }}</el-breadcrumb-item>
-              </el-breadcrumb>
-            </el-col>
-            <el-col :span="4" class="userinfo">
-              {{ sysUserName }}
-                <el-dropdown trigger="hover">
-                    <span class="el-dropdown-link userinfo-inner el-icon-caret-bottom"></span>
-                    <el-dropdown-menu slot="dropdown">
-                        <el-dropdown-item>我的消息</el-dropdown-item>
-                        <el-dropdown-item>设置</el-dropdown-item>
-                        <el-dropdown-item divided @click.native="logoutFun">退出登录</el-dropdown-item>
-                    </el-dropdown-menu>
-                </el-dropdown>
-            </el-col>
+  <div class="home-container">
+    <el-row class="container">
+      <el-col :span="24" class="header">
+        <el-col :span="10" :class="'logo-width'" class="logo">
+          <el-col class="logo-img"/>
+          <el-col class="logo-title">{{ sysName }}</el-col>
         </el-col>
-    <el-col :span="24" class="main">
-      <aside :class="'menu-expanded'">
-        <!--导航菜单, 三层嵌套结构-->
-       <el-menu :default-active="$route.path" ref="bigmenu" class="el-menu-vertical-demo" background-color="#545c64" text-color="#fff" unique-opened router>
-         <template v-for="(item,index) in $router.options.routes" v-if="!item.hidden && checkContains(item.name)">
-           <el-submenu :index="index+''" v-if="!item.single">
-             <template slot="title"><i :class="item.iconCls"></i>{{item.name}}</template>
-             <template v-for="child in item.children" :index="item.path +'/'+ child.path"  v-if="!child.hidden && checkContains(child.name)">
-                <el-menu-item v-if="!child.children" @click="addRouter(child, item.path +'/'+ child.path)" :index="item.path +'/'+ child.path">{{child.name}}</el-menu-item>
-                <el-submenu v-else  :index="item.path +'/'+ child.path">
-                  <template slot="title">{{ child.name }}</template>
-                    <el-menu-item v-for="sonChild in child.children" :key="sonChild.path" @click="addRouter(sonChild, item.path +'/'+ child.path + '/' + sonChild.path)" :index="item.path +'/'+ child.path + '/' + sonChild.path">{{ sonChild.name }}</el-menu-item>
-                </el-submenu>
+        <el-col :span="5" class="breadcrumb-container">
+          <el-breadcrumb separator="/" class="breadcrumb-inner">
+            <el-breadcrumb-item v-for="item in $route.matched" :key="item.path">{{ item.name }}</el-breadcrumb-item>
+          </el-breadcrumb>
+        </el-col>
+        <el-col :span="4" class="userinfo">
+          {{ sysUserName }}
+          <el-dropdown trigger="hover">
+            <span class="el-dropdown-link userinfo-inner el-icon-caret-bottom"/>
+            <el-dropdown-menu slot="dropdown">
+              <el-dropdown-item>我的消息</el-dropdown-item>
+              <el-dropdown-item>设置</el-dropdown-item>
+              <el-dropdown-item divided @click.native="logoutFun">退出登录</el-dropdown-item>
+            </el-dropdown-menu>
+          </el-dropdown>
+        </el-col>
+      </el-col>
+      <el-col :span="24" class="main">
+        <aside :class="'menu-expanded'">
+          <!--导航菜单, 三层嵌套结构-->
+          <el-menu ref="bigmenu" :default-active="$route.path" class="el-menu-vertical-demo" background-color="#545c64" text-color="#fff" unique-opened router>
+            <template v-for="(item,index) in $router.options.routes" v-if="!item.hidden && checkContains(item.name)">
+              <el-submenu v-if="!item.single" :index="index+''" :key="index">
+                <template slot="title"><i :class="item.iconCls"/>{{ item.name }}</template>
+                <template v-for="child in item.children" v-if="!child.hidden && checkContains(child.name)" :index="item.path +'/'+ child.path">
+                  <el-menu-item v-if="!child.children" :key="item.path +'/'+ child.path" :index="item.path +'/'+ child.path" @click="addRouter(child, item.path +'/'+ child.path)">{{ child.name }}</el-menu-item>
+                  <el-submenu v-else :index="item.path +'/'+ child.path" :key="item.path +'/'+ child.path">
+                    <template slot="title">{{ child.name }}</template>
+                    <el-menu-item v-for="sonChild in child.children" :key="sonChild.path" :index="item.path +'/'+ child.path + '/' + sonChild.path" @click="addRouter(sonChild, item.path +'/'+ child.path + '/' + sonChild.path)">{{ sonChild.name }}</el-menu-item>
+                  </el-submenu>
+                </template>
+              </el-submenu>
+              <el-menu-item v-for="child in item.children" v-else :index="child.path" :key="child.path" @click="addRouter(child)">
+                <i :class="item.iconCls"/>
+                <span slot="title">{{ child.name }}</span>
+                <router-link :to="child.path"/>
+              </el-menu-item>
             </template>
-           </el-submenu>
-           <el-menu-item v-else v-for="child in item.children" :index="child.path" :key="child.path" @click="addRouter(child)">
-            <i :class="item.iconCls"></i>
-            <span slot="title">{{ child.name }}</span>
-            <router-link :to="child.path">
-            </router-link>
-          </el-menu-item>
-         </template>
-       </el-menu>
-     </aside>
-     <section class="content-container">
-       <div class="grid-content bg-purple-light">
-         <el-row class="nav-tabs">
-          <el-col :span="24">
-            <div @click="changeRouter(index)" v-for="(option, index) in arry" class="cus-tab-box" :class="activepath==option.path?'activeTab':''">
-              <span>{{option.name}}</span>
-              <span @click.stop="arry.length!=1 && removeTab(index)"><i class="fa fa-times close-icon" aria-hidden="true"></i></span>
-            </div>
-          </el-col>
-         </el-row>
-         <el-col :span="24" class="content-wrapper">
-           <transition name="fade" mode="out-in">
-            <keep-alive>
-              <router-view v-if="$route.meta.keepAlive"></router-view>
-            </keep-alive>
-            <router-view v-if="!$route.meta.keepAlive"></router-view>
-           </transition>
-         </el-col>
-       </div>
-     </section>
-   </el-col>
- </el-row>
-</div>
+          </el-menu>
+        </aside>
+        <section class="content-container">
+          <div class="grid-content bg-purple-light">
+            <el-row class="nav-tabs">
+              <el-col :span="24">
+                <div v-for="(option, index) in arry" :key="index" :class="activepath==option.path?'activeTab':''" class="cus-tab-box" @click="changeRouter(index)">
+                  <span>{{ option.name }}</span>
+                  <span @click.stop="arry.length!=1 && removeTab(index)"><i class="fa fa-times close-icon" aria-hidden="true"/></span>
+                </div>
+              </el-col>
+            </el-row>
+            <el-col :span="24" class="content-wrapper">
+              <transition name="fade" mode="out-in">
+                <keep-alive>
+                  <router-view v-if="$route.meta.keepAlive"/>
+                </keep-alive>
+                <router-view v-if="!$route.meta.keepAlive"/>
+              </transition>
+            </el-col>
+          </div>
+        </section>
+      </el-col>
+    </el-row>
+  </div>
 </template>
 
 <script>
-import { mapGetters } from "vuex";
-import { mapMutations } from "vuex";
-import * as types from "../store/mutation-types";
+import { mapGetters } from 'vuex'
+import { mapMutations } from 'vuex'
+import * as types from '../store/mutation-types'
 export default {
   components: {},
   data() {
     return {
-      sysName: "管理系统",
-      sysUserName: "",
-      activepath: "",
+      sysName: '管理系统',
+      sysUserName: '',
+      activepath: '',
       arry: [],
       treeArry: []
-    };
+    }
+  },
+  computed: {
+    ...mapGetters(['username', 'password', 'treeData'])
   },
   // 跳转匹配菜单栏路由
   watch: {
@@ -93,44 +95,69 @@ export default {
       this.activepath = to.path
     }
   },
+  created() {
+    this.checkTreeNode(this.treeData)
+    if (JSON.parse(sessionStorage.getItem('tabData'))) {
+      this.arry = JSON.parse(sessionStorage.getItem('tabData'))
+      this.activepath = this.$route.path
+    } else {
+      const obj = {}
+      obj.path = this.$route.path
+      obj.name = this.$route.name
+      this.activepath = this.$route.path
+      this.arry.push(obj)
+    }
+    if (this.username) {
+      this.sysUserName = this.username
+    } else {
+      this.sysUserName = 'admin'
+    }
+  },
+  mounted() {
+    var user = sessionStorage.getItem('user')
+    if (user) {
+      user = JSON.parse(user)
+      this.sysUserName = user.userName || ''
+    }
+  },
   methods: {
-    //退出登录
+    // 退出登录
     logoutFun: function() {
-      var _this = this;
-      this.$confirm("确认退出吗?", "提示", {
-        //type: 'warning'
+      var _this = this
+      this.$confirm('确认退出吗?', '提示', {
+        // type: 'warning'
       })
         .then(() => {
-          sessionStorage.removeItem("user");
-          _this.$router.push("/login");
+          sessionStorage.removeItem('user')
+          _this.$router.push('/login')
         })
-        .catch(() => {});
+        .catch(() => {})
     },
     // 往tab页添加router
     addRouter(data, path) {
-      const obj = Object.assign({}, data);
+      const obj = Object.assign({}, data)
       if (path) {
         obj.path = path
       }
-      let add = true;
+      let add = true
       for (let i = 0; i < this.arry.length; i++) {
-        if (this.arry[i].path == obj.path) {
-          add = false;
+        if (this.arry[i].path === obj.path) {
+          add = false
         }
       }
       if (add) {
-        this.arry.push(obj);
+        this.arry.push(obj)
       }
-      add = true;
-      sessionStorage.setItem("tabData", JSON.stringify(this.arry));
+      add = true
+      sessionStorage.setItem('tabData', JSON.stringify(this.arry))
     },
     // 操作tab
     changeRouter(index) {
-      this.$router.push(this.arry[index].path);
+      this.$router.push(this.arry[index].path)
     },
     // 检查树结构是否包含当前节点
     checkContains(name) {
-      return true;
+      return true
       // return this.treeArry.includes(name);
     },
     // 遍历后台返回权限树节点数据
@@ -138,53 +165,25 @@ export default {
       for (var i = 0; i < tree.length; i++) {
         this.treeArry.push(tree[i].name)
         if (tree[i].child && tree[i].child.length > 0) {
-          this.checkTreeNode(tree[i].child);
+          this.checkTreeNode(tree[i].child)
         }
       }
     },
     // remove Tab
     removeTab(index) {
-      this.arry.splice(index, 1);
-      if (index == 0) {
-        this.$router.push(this.arry[0].path);
+      this.arry.splice(index, 1)
+      if (index === 0) {
+        this.$router.push(this.arry[0].path)
       } else {
-        this.$router.push(this.arry[index - 1].path);
+        this.$router.push(this.arry[index - 1].path)
       }
-      sessionStorage.setItem("tabData", JSON.stringify(this.arry));
+      sessionStorage.setItem('tabData', JSON.stringify(this.arry))
     },
     ...mapMutations({
       setTabData: types.SET_TABDATA
     })
-  },
-  created() {
-    this.checkTreeNode(this.treeData);
-    if (JSON.parse(sessionStorage.getItem("tabData"))) {
-      this.arry = JSON.parse(sessionStorage.getItem("tabData"));
-      this.activepath = this.$route.path;
-    } else {
-      let obj = {};
-      obj.path = this.$route.path;
-      obj.name = this.$route.name;
-      this.activepath = this.$route.path;
-      this.arry.push(obj);
-    }
-    if (this.username) {
-      this.sysUserName = this.username;
-    } else {
-      this.sysUserName = "admin";
-    }
-  },
-  computed: {
-    ...mapGetters(["username", "password", "treeData"])
-  },
-  mounted() {
-    var user = sessionStorage.getItem("user");
-    if (user) {
-      user = JSON.parse(user);
-      this.sysUserName = user.userName || "";
-    }
   }
-};
+}
 </script>
 
 <style scoped lang="scss">

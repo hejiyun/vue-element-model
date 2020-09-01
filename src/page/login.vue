@@ -2,23 +2,23 @@
   <div class="login-box">
     <div class="login-page-container">
       <el-form
+        ref="ruleForm2"
         :model="ruleForm2"
         :rules="rules2"
-        ref="ruleForm2"
         label-position="left"
         label-width="0px"
         class="demo-ruleForm login-container"
       >
         <h3 class="title">系统登录</h3>
         <el-form-item prop="account">
-          <el-input type="text" v-model="ruleForm2.account" placeholder="随便输"></el-input>
+          <el-input v-model="ruleForm2.account" type="text" placeholder="随便输"/>
         </el-form-item>
         <el-form-item prop="checkPass">
-          <el-input type="password" v-model="ruleForm2.checkPass" placeholder="随便输"></el-input>
+          <el-input v-model="ruleForm2.checkPass" type="password" placeholder="随便输"/>
         </el-form-item>
-        <el-checkbox click="remberuser" v-model="checked" checked class="remember">记住密码</el-checkbox>
+        <el-checkbox v-model="checked" click="remberuser" checked class="remember">记住密码</el-checkbox>
         <el-form-item style="width:100%;">
-          <el-button type="primary" style="width:100%;" @click="login" :loading="logining">登录</el-button>
+          <el-button :loading="logining" type="primary" style="width:100%;" @click="login">登录</el-button>
         </el-form-item>
       </el-form>
     </div>
@@ -26,32 +26,32 @@
 </template>
 
 <script>
-import { mapMutations } from "vuex";
-import {loginIn} from "@/axios/common";
+import { mapMutations } from 'vuex';
+import { loginIn } from '@/axios/common';
 import { setToken } from '@/util/auth'
-import * as types from "../store/mutation-types";
+import * as types from '../store/mutation-types';
 export default {
   props: {},
   data() {
     return {
       logining: false,
       ruleForm2: {
-        account: "",
-        checkPass: ""
+        account: '',
+        checkPass: ''
       },
       rules2: {
         account: [
           {
             required: true,
-            message: "请输入登录账号",
-            trigger: "blur"
+            message: '请输入登录账号',
+            trigger: 'blur'
           }
         ],
         checkPass: [
           {
             required: true,
-            message: "请输入登录密码",
-            trigger: "blur"
+            message: '请输入登录密码',
+            trigger: 'blur'
           }
         ]
       },
@@ -59,8 +59,8 @@ export default {
     };
   },
   created() {
-    this.ruleForm2.checkPass = "";
-    if (localStorage.getItem('userName')) {  // 记住密码操作
+    this.ruleForm2.checkPass = '';
+    if (localStorage.getItem('userName')) { // 记住密码操作
       this.ruleForm2.account = localStorage.getItem('userName');
       this.ruleForm2.checkPass = localStorage.getItem('password');
     }
@@ -78,33 +78,33 @@ export default {
           };
           this
           loginIn(params).then(res => {
-              let { data } = res;
-              this.logining = false;
-              console.log(res, data)
-              // 记住密码操作
-              if (this.checked) {
-                localStorage.setItem('userName', params.userCode)
-                localStorage.setItem('password', params.password)
-              } else {
-                localStorage.clear();
-              }
-              setToken(data.token)
-              this.setToken(data.token); // 状态存储token
-              this.setUsername(data.userName)
-              this.setPassword(params.password)
-              params['userName'] = data.userName
-              sessionStorage.setItem("user", JSON.stringify(params)); // session存储用户信息
-              sessionStorage.setItem("token", data.token); // session存储token
-              this.$router.push({ path: "/" });  // 去主页
-              // this.setTreeData(data.data); // 状态存储菜单节点
-            })
+            const { data } = res;
+            this.logining = false;
+            console.log(res, data)
+            // 记住密码操作
+            if (this.checked) {
+              localStorage.setItem('userName', params.userCode)
+              localStorage.setItem('password', params.password)
+            } else {
+              localStorage.clear();
+            }
+            setToken(data.token)
+            this.setToken(data.token); // 状态存储token
+            this.setUsername(data.userName)
+            this.setPassword(params.password)
+            params['userName'] = data.userName
+            sessionStorage.setItem('user', JSON.stringify(params)); // session存储用户信息
+            sessionStorage.setItem('token', data.token); // session存储token
+            this.$router.push({ path: '/' }); // 去主页
+            // this.setTreeData(data.data); // 状态存储菜单节点
+          })
             .catch((e) => {
               console.log(e)
-               this.logining = false;
+              this.logining = false;
               this.$message.error(e.data.errorMsg);
             });
         } else {
-          console.log("error submit!!");
+          console.log('error submit!!');
           return false;
         }
       });
