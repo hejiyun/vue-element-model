@@ -2,16 +2,16 @@
   <div class="home-container">
     <el-row class="container">
       <el-col :span="24" class="header">
-        <el-col :span="10" :class="'logo-width'" class="logo">
+        <el-col :span="5" :class="'logo-width'" class="logo">
           <el-col class="logo-img"/>
           <el-col class="logo-title">{{ sysName }}</el-col>
         </el-col>
-        <el-col :span="5" class="breadcrumb-container">
+        <el-col :span="16" class="breadcrumb-container">
           <el-breadcrumb separator="/" class="breadcrumb-inner">
             <el-breadcrumb-item v-for="item in $route.matched" :key="item.path">{{ item.name }}</el-breadcrumb-item>
           </el-breadcrumb>
         </el-col>
-        <el-col :span="4" class="userinfo">
+        <el-col :span="3" class="userinfo">
           {{ sysUserName }}
           <el-dropdown trigger="hover">
             <span class="el-dropdown-link userinfo-inner el-icon-caret-bottom"/>
@@ -29,17 +29,19 @@
           <el-menu ref="bigmenu" :default-active="$route.path" class="el-menu-vertical-demo" background-color="#545c64" text-color="#fff" unique-opened router>
             <template v-for="(item,index) in $router.options.routes" v-if="!item.hidden && checkContains(item.name)">
               <el-submenu v-if="!item.single" :index="index+''" :key="index">
-                <template slot="title"><i :class="item.iconCls"/>{{ item.name }}</template>
+                <template slot="title"><i :class="`${item.iconCls + ' ' + 'iconClass'}`"/>{{ item.name }}</template>
                 <template v-for="child in item.children" v-if="!child.hidden && checkContains(child.name)" :index="item.path +'/'+ child.path">
                   <el-menu-item v-if="!child.children" :key="item.path +'/'+ child.path" :index="item.path +'/'+ child.path" @click="addRouter(child, item.path +'/'+ child.path)">{{ child.name }}</el-menu-item>
                   <el-submenu v-else :index="item.path +'/'+ child.path" :key="item.path +'/'+ child.path">
                     <template slot="title">{{ child.name }}</template>
-                    <el-menu-item v-for="sonChild in child.children" :key="sonChild.path" :index="item.path +'/'+ child.path + '/' + sonChild.path" @click="addRouter(sonChild, item.path +'/'+ child.path + '/' + sonChild.path)">{{ sonChild.name }}</el-menu-item>
+                    <template v-for="sonChild in child.children">
+                      <el-menu-item v-if="!sonChild.hidden && checkContains(sonChild.name)" :key="sonChild.path" :index="item.path +'/'+ child.path + '/' + sonChild.path" class="small-font" @click="addRouter(sonChild, item.path +'/'+ child.path + '/' + sonChild.path)">{{ sonChild.name }}</el-menu-item>
+                    </template>
                   </el-submenu>
                 </template>
               </el-submenu>
               <el-menu-item v-for="child in item.children" v-else :index="child.path" :key="child.path" @click="addRouter(child)">
-                <i :class="item.iconCls"/>
+                <i :class="`${item.iconCls + ' ' + 'iconClass'}`"/>
                 <span slot="title">{{ child.name }}</span>
                 <router-link :to="child.path"/>
               </el-menu-item>
@@ -48,14 +50,14 @@
         </aside>
         <section class="content-container">
           <div class="grid-content bg-purple-light">
-            <el-row class="nav-tabs">
-              <el-col :span="24">
+            <div class="nav-tabs">
+              <scroll-pane ref="scrollPane" class="tags-view-wrapper">
                 <div v-for="(option, index) in arry" :key="index" :class="activepath==option.path?'activeTab':''" class="cus-tab-box" @click="changeRouter(index)">
                   <span>{{ option.name }}</span>
                   <span @click.stop="arry.length!=1 && removeTab(index)"><i class="fa fa-times close-icon" aria-hidden="true"/></span>
                 </div>
-              </el-col>
-            </el-row>
+              </scroll-pane>
+            </div>
             <el-col :span="24" class="content-wrapper">
               <transition name="fade" mode="out-in">
                 <keep-alive>
@@ -74,9 +76,10 @@
 <script>
 import { mapGetters } from 'vuex'
 import { mapMutations } from 'vuex'
+import ScrollPane from 'common/ScrollPane'
 import * as types from '../store/mutation-types'
 export default {
-  components: {},
+  components: { ScrollPane },
   data() {
     return {
       sysName: '管理系统',
@@ -92,6 +95,10 @@ export default {
   // 跳转匹配菜单栏路由
   watch: {
     $route(to, from) {
+      const obj = {}
+      obj.path = to.path
+      obj.name = to.name
+      this.addRouter(obj)
       this.activepath = to.path
     }
   },
@@ -99,26 +106,18 @@ export default {
     this.checkTreeNode(this.treeData)
     if (JSON.parse(sessionStorage.getItem('tabData'))) {
       this.arry = JSON.parse(sessionStorage.getItem('tabData'))
-      this.activepath = this.$route.path
     } else {
       const obj = {}
       obj.path = this.$route.path
       obj.name = this.$route.name
-      this.activepath = this.$route.path
       this.arry.push(obj)
     }
-    if (this.username) {
-      this.sysUserName = this.username
-    } else {
-      this.sysUserName = 'admin'
-    }
+    this.activepath = this.$route.path
+    this.sysUserName = this.username || 'admin'
   },
   mounted() {
-    var user = sessionStorage.getItem('user')
-    if (user) {
-      user = JSON.parse(user)
-      this.sysUserName = user.userName || ''
-    }
+    const user = JSON.parse(sessionStorage.getItem('user'))
+    this.sysUserName = user.userName || ''
   },
   methods: {
     // 退出登录
@@ -136,9 +135,7 @@ export default {
     // 往tab页添加router
     addRouter(data, path) {
       const obj = Object.assign({}, data)
-      if (path) {
-        obj.path = path
-      }
+      obj.path = path || obj.path
       let add = true
       for (let i = 0; i < this.arry.length; i++) {
         if (this.arry[i].path === obj.path) {
@@ -147,9 +144,8 @@ export default {
       }
       if (add) {
         this.arry.push(obj)
+        sessionStorage.setItem('tabData', JSON.stringify(this.arry))
       }
-      add = true
-      sessionStorage.setItem('tabData', JSON.stringify(this.arry))
     },
     // 操作tab
     changeRouter(index) {
@@ -257,6 +253,12 @@ export default {
       .el-menu {
         height: 100%;
       }
+      .iconClass {
+        color:white
+      }
+      .small-font {
+        font-size: 12px;
+      }
       .collapsed {
         width: 60px;
         background: $globalColor;
@@ -291,6 +293,7 @@ export default {
     .content-container {
       flex: 1;
       overflow-y: scroll;
+      overflow-x: hidden;
       padding: 20px;
       .nav-tabs {
         font-size: 12px;
