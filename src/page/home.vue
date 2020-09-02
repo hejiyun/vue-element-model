@@ -286,14 +286,14 @@ export default {
     .single-menu {
       height: 40px;
       line-height: 40px;
-      padding-left: 45px;
+      // padding-left: 45px;
       color: #fff;
       background-color: $baseColor;
     }
     .content-container {
       flex: 1;
-      overflow-y: scroll;
-      overflow-x: hidden;
+      // overflow-y: hidden;
+      overflow-x: scroll;
       padding: 20px;
       .nav-tabs {
         font-size: 12px;

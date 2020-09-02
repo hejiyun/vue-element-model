@@ -227,18 +227,372 @@ const routes = [
     ]
   },
   {
-    path: '/menu2',
+    path: '/B2BOrder',
     component: () => import('@page/home.vue'),
-    name: '菜單二',
-    iconCls: 'el-icon-message',
+    name: 'B2B交易管理',
+    iconCls: 'el-icon-tickets',
     meta: {
       keepAlive: true // 不需要缓存
     },
     children: [
       {
-        path: 'sub1',
-        component: () => import('@page/menu2/sub1.vue'),
-        name: '配置管理',
+        path: 'order',
+        component: () => import('@page/B2BOrder/orderList'),
+        name: '订单列表',
+        meta: {
+          keepAlive: true // 不需要缓存
+        }
+      },
+      {
+        path: 'orderDetail',
+        component: () => import('@page/B2BOrder/orderDetail'),
+        name: '订单详情',
+        hidden: true,
+        meta: {
+          keepAlive: true // 不需要缓存
+        }
+      },
+      {
+        path: 'orderEdit',
+        component: () => import('@page/B2BOrder/orderEdit'),
+        name: '修改订单',
+        hidden: true,
+        meta: {
+          keepAlive: true // 不需要缓存
+        }
+      },
+      {
+        path: 'returnList',
+        component: () => import('@page/B2BOrder/returnList'),
+        name: '退货单列表',
+        meta: {
+          keepAlive: true // 不需要缓存
+        }
+      },
+      {
+        path: 'returnDetail',
+        component: () => import('@page/B2BOrder/returnDetail'),
+        name: '退货单详情',
+        hidden: true,
+        meta: {
+          keepAlive: true // 不需要缓存
+        }
+      }
+    ]
+  },
+  {
+    path: '/oms',
+    component: () => import('@page/home.vue'),
+    name: '线上订单管理',
+    iconCls: 'el-icon-shopping-cart-full',
+    meta: {
+      keepAlive: true // 不需要缓存
+    },
+    children: [
+      {
+        path: 'transactionList',
+        component: () => import('@page/oms/transactionList'),
+        name: '交易单列表',
+        meta: {
+          keepAlive: true // 不需要缓存
+        }
+      },
+      {
+        path: 'transactionDetail',
+        component: () => import('@page/oms/transactionDetail'),
+        name: '订单详情',
+        hidden: true,
+        meta: {
+          keepAlive: true // 不需要缓存
+        }
+      },
+      {
+        path: 'afterSaleList',
+        component: () => import('@page/oms/afterSaleList'),
+        name: '售后单列表',
+        meta: {
+          keepAlive: true // 不需要缓存
+        }
+      },
+      {
+        path: 'afterSaleDetail',
+        component: () => import('@page/oms/afterSaleDetail'),
+        name: '售后单详情',
+        hidden: true,
+        meta: {
+          keepAlive: true // 不需要缓存
+        }
+      }
+    ]
+  },
+  {
+    path: '/ods',
+    component: () => import('@page/home.vue'),
+    name: '收发货管理',
+    iconCls: 'el-icon-s-grid',
+    meta: {
+      keepAlive: true // 不需要缓存
+    },
+    children: [
+      {
+        path: 'dispatchList',
+        component: () => import('@page/ods/dispatchList'),
+        name: '发货单列表',
+        meta: {
+          keepAlive: true // 不需要缓存
+        }
+      },
+      {
+        path: 'dispatchDetail',
+        component: () => import('@page/ods/dispatchDetail'),
+        name: '发货单详情',
+        hidden: true,
+        meta: {
+          keepAlive: true // 不需要缓存
+        }
+      },
+      {
+        path: 'receiveList',
+        component: () => import('@page/ods/receiveList'),
+        name: '收货单列表',
+        meta: {
+          keepAlive: true // 不需要缓存
+        }
+      },
+      {
+        path: 'receiveDetail',
+        component: () => import('@page/ods/receiveDetail'),
+        name: '收货单详情',
+        hidden: true,
+        meta: {
+          keepAlive: true // 不需要缓存
+        }
+      },
+      {
+        path: 'jitCombinedOrder',
+        component: () => import('@page/ods/JITCombinedOrder'),
+        name: 'JIT合单列表',
+        meta: {
+          keepAlive: true // 不需要缓存
+        }
+      },
+      {
+        path: 'jitCombinedOrderDetail',
+        component: () => import('@page/ods/JITCombinedOrderDetail'),
+        name: 'JIT合单详情',
+        hidden: true,
+        meta: {
+          keepAlive: true // 不需要缓存
+        }
+      }
+    ]
+  },
+  {
+    path: '/finance',
+    component: () => import('@page/home.vue'),
+    single: false,
+    name: '财务管理',
+    meta: {
+      keepAlive: true // 不需要缓存
+    },
+    iconCls: 'el-icon-pie-chart', // 图标样式class
+    children: [
+      {
+        path: 'jitFinance',
+        name: 'JIT财务报表',
+        component: () => import('@page/finance/jitFinance'),
+        meta: {
+          keepAlive: true // 不需要缓存
+        }
+      }
+    ]
+  },
+  {
+    path: '/basicArchives',
+    component: () => import('@page/home.vue'),
+    single: false,
+    name: '基础档案管理',
+    meta: {
+      keepAlive: true // 不需要缓存
+    },
+    iconCls: 'el-icon-reading', // 图标样式class
+    children: [
+      {
+        path: 'productManage',
+        name: '商品管理',
+        component: () => import('@page/basicArchives/productManage'),
+        meta: {
+          keepAlive: true // 不需要缓存
+        }
+      },
+      {
+        path: 'productDetail',
+        name: '商品详情',
+        component: () => import('@page/basicArchives/productDetail'),
+        hidden: true,
+        meta: {
+          keepAlive: true // 不需要缓存
+        }
+      }
+    ]
+  },
+  {
+    path: '/supplyChain',
+    component: () => import('@page/home.vue'),
+    name: '供应链管理',
+    meta: {
+      keepAlive: true // 不需要缓存
+    },
+    iconCls: 'el-icon-connection', // 图标样式class
+    children: [
+      {
+        path: 'stock',
+        component: () => import('@page/supplyChain/stock'),
+        name: '库存管理',
+        meta: {
+          keepAlive: true // 不需要缓存
+        },
+        children: [
+          {
+            path: 'physicalSearch',
+            component: () => import('@page/supplyChain/stock/physicalSearch'),
+            name: '实物库存查询',
+            meta: {
+              keepAlive: true // 不需要缓存
+            }
+          },
+          {
+            path: 'physicalManage',
+            component: () => import('@page/supplyChain/stock/physicalManage'),
+            name: '实物库存管理',
+            meta: {
+              keepAlive: true // 不需要缓存
+            }
+          },
+          {
+            path: 'channelManage',
+            component: () => import('@page/supplyChain/stock/channelManage'),
+            name: '渠道库存管理',
+            meta: {
+              keepAlive: true // 不需要缓存
+            }
+          }
+        ]
+      },
+      {
+        path: 'allocation',
+        component: () => import('@page/supplyChain/allocation'),
+        name: '调拨管理',
+        meta: {
+          keepAlive: true // 不需要缓存
+        },
+        iconCls: 'el-icon-message', // 图标样式class
+        children: [
+          {
+            path: 'transferApplication',
+            component: () => import('@page/supplyChain/allocation/transferApplication'),
+            name: '调拨申请单列表',
+            meta: {
+              keepAlive: true // 不需要缓存
+            }
+          },
+          {
+            path: 'transferApplicationDetail',
+            component: () => import('@page/supplyChain/allocation/transferApplicationDetail'),
+            name: '调拨申请单明细',
+            hidden: true,
+            meta: {
+              keepAlive: true // 不需要缓存
+            }
+          },
+          {
+            path: 'addTransferApplication',
+            component: () => import('@page/supplyChain/allocation/addTransferApplication'),
+            name: '新增调拨申请单',
+            hidden: true,
+            meta: {
+              keepAlive: true // 不需要缓存
+            }
+          }
+        ]
+      },
+      {
+        path: 'purchase',
+        component: () => import('@page/supplyChain/purchase'),
+        name: '采购管理',
+        meta: {
+          keepAlive: true // 不需要缓存
+        },
+        iconCls: 'el-icon-message', // 图标样式class
+        children: [
+          {
+            path: 'document',
+            component: () => import('@page/supplyChain/purchase/document'),
+            name: '采购单据列表',
+            meta: {
+              keepAlive: true // 不需要缓存
+            }
+          },
+          {
+            path: 'documentDetail',
+            component: () => import('@page/supplyChain/purchase/documentDetail'),
+            name: '采购单据明细',
+            hidden: true,
+            meta: {
+              keepAlive: true // 不需要缓存
+            }
+          },
+          {
+            path: 'addDocument',
+            component: () => import('@page/supplyChain/purchase/addDocument'),
+            name: '新增采购单据',
+            hidden: true,
+            meta: {
+              keepAlive: true // 不需要缓存
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    path: '/goodCharge',
+    component: () => import('@page/home.vue'),
+    name: '商品价格管理',
+    iconCls: 'el-icon-edit-outline',
+    meta: {
+      keepAlive: true // 不需要缓存
+    },
+    children: [
+      {
+        path: 'productGuidePrice',
+        component: () => import('@page/goodCharge/productGuidePrice'),
+        name: '商品指导价管理',
+        meta: {
+          keepAlive: true // 不需要缓存
+        }
+      },
+      {
+        path: 'productGuidePriceDetail',
+        component: () => import('@page/goodCharge/productGuidePriceDetail'),
+        name: '商品指导价详情',
+        hidden: true,
+        meta: {
+          keepAlive: true // 不需要缓存
+        }
+      },
+      {
+        path: 'warningLog',
+        component: () => import('@page/goodCharge/warningLog'),
+        name: '预警日志',
+        meta: {
+          keepAlive: true // 不需要缓存
+        }
+      },
+      {
+        path: 'optionLog',
+        component: () => import('@page/goodCharge/optionLog'),
+        name: '操作日志',
         meta: {
           keepAlive: true // 不需要缓存
         }
