@@ -320,6 +320,7 @@ export default {
         }
       }
       .content-wrapper {
+        padding: 10px;
         background-color: #fff;
         box-sizing: border-box;
       }
