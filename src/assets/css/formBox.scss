@@ -1,0 +1,18 @@
+.form-flex-Box {
+  display: flex;
+  flex-wrap: wrap;
+  .el-form-item {
+    width: 25%;
+    margin-bottom: 2px
+  }
+  .el-input__inner, label, input {
+    height: 30px !important;
+  }
+  .el-button {
+    height: 30px;
+    margin-top: 6px;
+    margin-left: 10px;
+    padding: 7px 15px
+  }
+  
+}

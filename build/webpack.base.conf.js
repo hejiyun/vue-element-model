@@ -30,7 +30,8 @@ module.exports = {
       'config': resolve('src/config'),
       'common': resolve('src/components/common'),
       '@util': resolve('src/util'),
-      '@page': resolve('src/page')
+      '@page': resolve('src/page'),
+      "@component": resolve('src/components')
     }
   },
   module: {
