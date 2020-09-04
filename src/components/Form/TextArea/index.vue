@@ -1,16 +1,9 @@
 <template>
-  <el-checkbox v-model="checked">备选项</el-checkbox>
+  <el-input :disabled="item.disabled" v-model="value" type="textarea"/>
 </template>
 <script>
+import allFormItemMixin from '@component/Form/allFormItemMixin'
 export default {
-  data() {
-    return {
-      checked: true
-    }
-  },
-  beforeDestroy() {
-  },
-  methods: {
-  }
+  mixins: [allFormItemMixin]
 }
 </script>

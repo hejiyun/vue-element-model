@@ -1,13 +1,20 @@
 <template>
   <div class="dashboard-style">
     <el-row>欢迎您 {{ sysUserName }}</el-row>
-    <SearchForm :options="row"/>
+    <SearchForm :options="row">
+      <template slot="password2233">
+        <span>这里是新增的内容</span>
+      </template>
+      <template slot="btn">
+        <el-button>点击我</el-button>
+      </template>
+    </SearchForm>
     <el-row class="footer-div">copyright @ 昆山宝唯信息科技有限公司上海分公司</el-row>
   </div>
 </template>
 <script>
 import SearchForm from '@component/Form'
-import { InputC, SelectC } from '@component/Form/ExportItem.js'
+import { InputC, SelectC, CheckBox, DateC, NumberInput, Radio, Switch, TextArea, Upload, DownLoad } from '@component/Form/ExportItem.js'
 export default {
   components: {
     SearchForm
@@ -25,24 +32,85 @@ export default {
         {
           label: '下拉框',
           prop: 'username',
+          multiple: true,
           setDefaultValue: '选项2',
+          options: [{
+            value: '选项1',
+            label: '黄金糕'
+          }, {
+            value: '选项2',
+            label: '双皮奶'
+          }, {
+            value: '选项3',
+            label: '蚵仔煎'
+          }, {
+            value: '选项4',
+            label: '龙须面'
+          }, {
+            value: '选项5',
+            label: '北京烤鸭'
+          }],
           cmp: SelectC
         },
         {
           label: '输入框2',
           prop: 'password2',
-          cmp: InputC
+          cmp: NumberInput
         },
         {
-          label: '下拉框2',
+          label: '输入框6',
+          prop: 'password2233',
+          slot: true
+        },
+        {
+          label: '日期选择',
+          setDefaultValue: ['2020-08-08 00:00:00', '2020-09-19 23:59:59'], // 默认初始日期
           prop: 'username1',
-          setDefaultValue: '选项2',
-          cmp: SelectC
+          cmp: DateC
         },
         {
-          label: '输入框3',
+          label: '差异',
           prop: 'password3',
-          cmp: InputC
+          placeholder: '是否有差异',
+          cmp: CheckBox
+        },
+        {
+          label: '文本域',
+          prop: 'password81',
+          cmp: TextArea
+        },
+        {
+          label: '按月缴费',
+          prop: 'password8',
+          cmp: Switch
+        },
+        {
+          label: '选择',
+          prop: 'password4',
+          list: [{
+            label: '男',
+            value: '12'
+          }, {
+            label: '女',
+            value: '123'
+          }],
+          cmp: Radio
+        },
+        {
+          label: '上传',
+          prop: 'file23',
+          FileTypeList: ['JPG', 'xlsx', 'SCE'],
+          cmp: Upload
+        },
+        {
+          label: '下载',
+          prop: 'file232',
+          btntype: 'text',
+          btnText: '导出群文件',
+          ExportParams: {
+            url: 'baidu.com'
+          },
+          cmp: DownLoad
         }
       ]
     }

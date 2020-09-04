@@ -10,12 +10,13 @@ import 'font-awesome/css/font-awesome.min.css';
 import router from './router';
 import VCharts from 'v-charts'
 import mloading from 'common/loading/index.js'
+import axios from './axios/request'
 
 Vue.use(ElementUI);
 Vue.use(Router);
 Vue.use(VCharts);
 Vue.use(mloading)
-
+Vue.prototype.$axios = axios
 Vue.config.productionTip = false
 /**
   * 判断当前是否登录，未登录不能跳转路由

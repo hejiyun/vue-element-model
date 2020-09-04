@@ -23,10 +23,13 @@ export { default as CheckBox } from './CheckBox'
 export { default as Radio } from './Radio'
 
 // 时间选择器组件
-export { default as Date } from './Date'
+export { default as DateC } from './Date'
 
 // 开关选择器组件
 export { default as Switch } from './Switch'
 
 // 上传文件/图片组件
 export { default as Upload } from './Upload'
+
+// 下载文件/图片组件
+export { default as DownLoad } from './DownLoad'

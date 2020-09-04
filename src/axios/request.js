@@ -8,41 +8,41 @@ const instance = axios.create({
   baseURL: process.env.BASE_API, // api 的 base_url
   timeout: 50000 // request timeout
 })
-//添加请求拦截器
+// 添加请求拦截器
 instance.interceptors.request.use(
   config => {
-      //在发送请求之前做某事，比如加一个loading
-      loadingCount++
-      Vue.prototype.$mloading.show()
-      if (getToken()) {
-        config.headers['Authorization'] = getToken()
-      }
-      // showLoading.loading()
-      // 让每个请求携带token-- ['X-Token']为自定义key 请根据实际情况自行修改
-      // config.headers['Authorization'] = getToken()
-      return config;
-    },
-    error => {
-      loadingCount--
+    // 在发送请求之前做某事，比如加一个loading
+    loadingCount++
+    Vue.prototype.$mloading.show()
+    if (getToken()) {
+      config.headers['Authorization'] = getToken()
+    }
+    // showLoading.loading()
+    // 让每个请求携带token-- ['X-Token']为自定义key 请根据实际情况自行修改
+    // config.headers['Authorization'] = getToken()
+    return config;
+  },
+  error => {
+    loadingCount--
     if (loadingCount === 0) {
       Vue.prototype.$mloading.hide()
     }
-      //请求错误时做些事
-      return Promise.reject(error.response);
-    }
+    // 请求错误时做些事
+    return Promise.reject(error.response);
+  }
 );
 
-//添加一个响应拦截器
+// 添加一个响应拦截器
 instance.interceptors.response.use(
   response => {
-    //在拿到请求后, 去除loading状态
+    // 在拿到请求后, 去除loading状态
     loadingCount--
     if (loadingCount === 0) {
       Vue.prototype.$mloading.hide()
     }
     // 1.成功
     return Promise.resolve(response);
-  }, 
+  },
   async error => {
     loadingCount--
     if (loadingCount === 0) {
@@ -85,12 +85,10 @@ instance.interceptors.response.use(
     // 400错误,正常返回错误信息
     // 500 错误. 正常返回错误信息
     // 401token过期, 无权限, 则自动刷新token续命
-      return Promise.reject(error.response);
+    return Promise.reject(error.response);
   }
 );
-
 export default instance;
-
 
 const get = (url, params) => {
   return instance.get(url, params)
