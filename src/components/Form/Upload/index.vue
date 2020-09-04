@@ -135,16 +135,23 @@ export default {
       }
     },
     fnOSSUpload(options) {
+      // 通过change状态校验的文件才可以在http-request中保留
       if (this.testRemove) {
+        // 判断多文件/单文件采用不同保留方式
         this.Titem.multiple && this.Titem.fileList.push(options.file)
         !this.Titem.multiple && this.Titem.fileList.splice(0, 1, options.file);
+        // 将值传递给外部
         this.$emit('updateValue', this.Titem.fileList)
+        // 重置是否允许文件保留变量
         this.testRemove = false
       }
     },
     onRemove(file, fileList) {
+      // 移除文件则使用filter过滤
       this.Titem.fileList = this.Titem.fileList.filter(item => item.uid !== file.uid)
+      // 过滤完成后,将结果传递给外部
       this.$emit('updateValue', this.Titem.fileList)
+      // 重置flag
       this.flag = true
     },
     onExceed(files, fileList) {
