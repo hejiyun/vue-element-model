@@ -100,6 +100,7 @@ export default {
           label: '上传',
           prop: 'file23',
           FileTypeList: ['JPG', 'xlsx'],
+          multiple: false,
           cmp: Upload
         },
         {

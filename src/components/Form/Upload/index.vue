@@ -82,7 +82,6 @@ export default {
       flag: true,
       dialogImageUrl: '',
       dialogVisible: false,
-      formData: new FormData(),
       testRemove: false
     }
   },
@@ -94,12 +93,10 @@ export default {
         FileType: 'file',
         FileTypeErrorText: ['上传文件格式错误', '上传文件大小不能超过10M'],
         FileLimit: 10,
-        fileList: []
+        fileList: [],
+        multiple: false
       }, this.item)
     }
-  },
-  mounted() {
-    console.log(this.Titem)
   },
   methods: {
     reset() {
@@ -117,37 +114,41 @@ export default {
         // 设置文件最大限制  , 以M为单位
         const isFileLimit = file.size / 1024 / 1024 < this.Titem.FileLimit
         if (isFileLimit) {
-          fileList.length > 1 && fileList.splice(0, 1)
+          // 单个文件
+          (!this.Titem.multiple && fileList.length > 1) && fileList.splice(0, 1)
+          // 多个文件直接过
           this.testRemove = true
           return isFile && isFileLimit
         } else {
           // 如果文件大小不符合
           this.$message.warning(`${this.Titem.FileTypeErrorText[1]}`)
-          fileList.splice(1, 1)
+          fileList.splice(fileList.length - 1, 1)
           this.flag = false
           return isFileLimit
         }
       } else {
         // 如果文件类型不符合, FileTypeErrorText 文件提示内容
         this.$message.warning(`${this.Titem.FileTypeErrorText[0]}`)
-        fileList.splice(1, 1)
+        fileList.splice(fileList.length - 1, 1)
         this.flag = false
         return isFile
       }
     },
     fnOSSUpload(options) {
       if (this.testRemove) {
-        this.formData.set('file', options.file)
-        this.$emit('updateValue', this.formData.get('file'))
+        this.Titem.multiple && this.Titem.fileList.push(options.file)
+        !this.Titem.multiple && this.Titem.fileList.splice(0, 1, options.file);
+        this.$emit('updateValue', this.Titem.fileList)
         this.testRemove = false
       }
     },
     onRemove(file, fileList) {
-      this.formData.delete('file')
+      this.Titem.fileList = this.Titem.fileList.filter(item => item.uid !== file.uid)
+      this.$emit('updateValue', this.Titem.fileList)
       this.flag = true
     },
     onExceed(files, fileList) {
-      this.Titem.fileList = files
+      // this.Titem.fileList = fileList
     },
     beforeRemove(file, fileList) {
       if (this.flag) {
