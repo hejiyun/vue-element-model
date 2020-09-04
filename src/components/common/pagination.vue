@@ -1,14 +1,14 @@
 <template>
   <div class="pagination-content">
     <el-pagination
-      @size-change="handleSizeChange"
-      @current-change="handleCurrentChange"
       :current-page="currentPage"
       :page-sizes="[100, 200, 300, 400]"
       :page-size="100"
-      layout="total, sizes, prev, pager, next, jumper"
       :total="totalPage"
-    ></el-pagination>
+      layout="total, sizes, prev, pager, next, jumper"
+      @size-change="handleSizeChange"
+      @current-change="handleCurrentChange"
+    />
   </div>
 </template>
 <script>
@@ -25,10 +25,10 @@ export default {
   },
   methods: {
     handleSizeChange(val) {
-      this.$emit("sendPageSize", val);
+      this.$emit('sendPageSize', val);
     },
     handleCurrentChange(val) {
-      this.$emit("sendCurrentPage", val);
+      this.$emit('sendCurrentPage', val);
     }
   }
 };
