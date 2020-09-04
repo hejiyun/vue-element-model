@@ -21,22 +21,19 @@ export default {
       return Object.assign({
         btntype: 'primary',
         btnText: '导出',
-        ExportParams: {
-          method: 'get',
-          url: '',
-          timeout: 60000
-        }
+        method: 'get',
+        url: '',
+        timeout: 60000
       }, this.item)
     }
   },
   methods: {
     // 点击批量导出模板按钮
     exportXls() {
-      console.log('1231')
       this.$axios({
-        method: this.Titem.ExportParams.method,
-        timeout: this.Titem.ExportParams.timeout,
-        url: this.Titem.ExportParams.url,
+        method: this.Titem.method,
+        timeout: this.Titem.timeout,
+        url: this.Titem.url,
         responseType: 'blob'
       }).then(res => {
         if (res.data.code) {

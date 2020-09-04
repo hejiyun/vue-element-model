@@ -107,9 +107,7 @@ export default {
           prop: 'file232',
           btntype: 'text',
           btnText: '导出群文件',
-          ExportParams: {
-            url: 'baidu.com'
-          },
+          url: '/bff/common/no_route/api/v1/template/r/download?templateId=POS_SALES_INVENTORY_OFFLINE_IMPORT',
           cmp: DownLoad
         }
       ]
