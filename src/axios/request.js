@@ -90,29 +90,35 @@ instance.interceptors.response.use(
 );
 export default instance;
 
-const get = (url, params) => {
-  return instance.get(url, params)
+const get = (url, params, config) => {
+  let axiosBase = {
+    method: 'get',
+    url: url,
+    params: params
+  }
+  // 在内部通过传递进来的值使用session判断本次请求是否需要loading动画
+  if (!config) {
+    config = {}
+  }
+  axiosBase = Object.assign(axiosBase, config)
+  return instance(axiosBase)
 }
 
-const post = (url, params) => {
-  return instance.post(url, params)
-}
-
-const put = (url, params) => {
-  return instance.put(url, params)
-}
-
-const del = (url, params) => {
-  return instance.delete(url, params)
-}
-const patch = (url, params) => {
-  return instance.patch(url, params)
+const post = (url, params, config) => {
+  let axiosBase = {
+    method: 'post',
+    url: url,
+    data: params
+  }
+  // 在内部通过传递进来的值使用session判断本次请求是否需要loading动画
+  if (!config) {
+    config = {}
+  }
+  axiosBase = Object.assign(axiosBase, config)
+  return instance(axiosBase)
 }
 
 export {
   get,
-  post,
-  put,
-  del,
-  patch
+  post
 }
