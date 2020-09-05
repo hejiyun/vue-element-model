@@ -28,6 +28,9 @@ export default {
     }
   },
   methods: {
+    reset() {
+      return false
+    },
     // 点击批量导出模板按钮
     exportXls() {
       this.$axios({

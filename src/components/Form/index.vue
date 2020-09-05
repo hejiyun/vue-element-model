@@ -30,7 +30,7 @@ export default {
   methods: {
     // 在控件值发生变化时, 更新父组件中对应的值
     updateValue(e, prop) {
-      this.form[prop] = typeof e === String ? e.trim() : e
+      this.form[prop] = typeof e === 'string' ? e.trim() : e
     },
     // 重置表单值属性
     reset() {
@@ -39,7 +39,7 @@ export default {
       })
     },
     submit() {
-      console.log(this.form)
+      this.$emit('search', this.form)
     },
     // 初始化同步设置默认值
     setDefaultValue() {

@@ -9,8 +9,13 @@ export default {
   },
   data() {
     return {
-      value: this.item.setDefaultValue || ''
+      value: ''
     };
+  },
+  created() {
+    if (this.item.setDefaultValue) {
+      this.value = this.item.setDefaultValue
+    }
   },
   watch: {
     value(v, o) {
