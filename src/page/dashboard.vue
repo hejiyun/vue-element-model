@@ -2,12 +2,14 @@
   <div class="dashboard-style">
     <el-row>欢迎您 {{ sysUserName }}</el-row>
     <SearchForm :options="row"/>
+    <el-button @click="getMenus">点我</el-button>
     <el-row class="footer-div">copyright @ 昆山宝唯信息科技有限公司上海分公司</el-row>
   </div>
 </template>
 <script>
 import SearchForm from '@component/Form'
 import { SelectC } from '@component/Form/ExportItem.js'
+import { getMenu } from '@/axios/common';
 export default {
   components: {
     SearchForm
@@ -47,6 +49,12 @@ export default {
     if (user) {
       user = JSON.parse(user);
       this.sysUserName = user.userName || '';
+    }
+  },
+  methods: {
+    async getMenus() {
+      const res = await getMenu()
+      console.log(res);
     }
   }
 }

@@ -17,8 +17,8 @@ instance.interceptors.request.use(
     const noload = JSON.parse(sessionStorage.getItem('noload'))
     if (!noload) {
       Vue.prototype.$mloading.show()
-      sessionStorage.removeItem('noload')
     }
+    sessionStorage.removeItem('noload')
     if (getToken()) {
       config.headers['Authorization'] = getToken()
     }
@@ -97,7 +97,7 @@ export default instance;
 
 const get = (url, params, config) => {
   // 在内部通过传递进来的值使用session判断本次请求是否需要loading动画
-  if (params['noload']) {
+  if (params && params['noload']) {
     sessionStorage.setItem('noload', true);
     delete params['noload']
   }
