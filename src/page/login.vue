@@ -74,7 +74,8 @@ export default {
           const params = {
             userCode: this.ruleForm2.account,
             password: this.ruleForm2.checkPass,
-            systemId: 10
+            systemId: 10,
+            noload: true
           };
           this
           loginIn(params).then(res => {

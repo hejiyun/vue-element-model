@@ -13,7 +13,12 @@ instance.interceptors.request.use(
   config => {
     // 在发送请求之前做某事，比如加一个loading
     loadingCount++
-    Vue.prototype.$mloading.show()
+    // 判定请求参数中属性noload为true的http请求,视为不需要加载loading动画,
+    const noload = JSON.parse(sessionStorage.getItem('noload'))
+    if (!noload) {
+      Vue.prototype.$mloading.show()
+      sessionStorage.removeItem('noload')
+    }
     if (getToken()) {
       config.headers['Authorization'] = getToken()
     }
@@ -91,12 +96,16 @@ instance.interceptors.response.use(
 export default instance;
 
 const get = (url, params, config) => {
+  // 在内部通过传递进来的值使用session判断本次请求是否需要loading动画
+  if (params['noload']) {
+    sessionStorage.setItem('noload', true);
+    delete params['noload']
+  }
   let axiosBase = {
     method: 'get',
     url: url,
     params: params
   }
-  // 在内部通过传递进来的值使用session判断本次请求是否需要loading动画
   if (!config) {
     config = {}
   }
@@ -105,12 +114,16 @@ const get = (url, params, config) => {
 }
 
 const post = (url, params, config) => {
+  // 在内部通过传递进来的值使用session判断本次请求是否需要loading动画
+  if (params['noload']) {
+    sessionStorage.setItem('noload', true);
+    delete params['noload']
+  }
   let axiosBase = {
     method: 'post',
     url: url,
     data: params
   }
-  // 在内部通过传递进来的值使用session判断本次请求是否需要loading动画
   if (!config) {
     config = {}
   }
