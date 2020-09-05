@@ -1,0 +1,21 @@
+.flex-box.detail-view {
+  display: flex;
+  flex-wrap: wrap;
+  .flex-box {
+    margin-right: 3px;
+    display: flex;
+    flex-wrap: wrap;
+    font-weight: 500;
+  }
+  .text-left {
+    text-align: left;
+  }
+  .information-title {
+    color: black;
+    width: 130px;
+    font-size: 16px;  /*一定要设置宽度，或者元素内含的百分比*/
+    overflow: hidden; /*溢出的部分隐藏*/
+    white-space: nowrap; /*文本不换行*/
+    text-overflow:ellipsis;/*ellipsis:文本溢出显示省略号（...）；clip：不显示省略标记（...），而是简单的裁切*/
+    }
+}
