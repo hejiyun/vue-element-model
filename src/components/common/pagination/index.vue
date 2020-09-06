@@ -65,7 +65,6 @@ export default {
       } else {
         result = data.data
       }
-      console.log(result)
       this.totalPage = result.total
       if (!result.list) {
         result.list = []
@@ -96,13 +95,10 @@ export default {
         url: this.Config.url
       }
       if (this.Config.method === 'post') {
-        console.log('12313')
         axiosBase['data'] = this.sendParams
       } else {
-        console.log('234324')
         axiosBase['params'] = this.sendParams
       }
-      console.log(axiosBase, 'zheli')
       const res = await this.$axios(axiosBase)
       this.processing(res.data)
     },
