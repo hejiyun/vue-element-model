@@ -69,8 +69,7 @@ export default {
   },
   watch: {
     'Config.tableData': {
-      handler: function(v, o) {
-        console.log(v, o)
+      handler: function() {
         this.getData()
       }
     }
@@ -125,7 +124,7 @@ export default {
               typeIndex.push(typeData.length) // 类型循环完成后把数据长度存起来
             }
             for (var k in v) {
-              if (k !== this.mergeTable) {
+              if (k !== this.Config.mergeTable) {
                 subV[k] = v[k]
               }
             }
