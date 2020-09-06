@@ -11,6 +11,7 @@
 </template>
 <script>
 export default {
+  name: 'DynamicForm',
   props: {
     options: {
       type: Array,
@@ -54,4 +55,36 @@ export default {
   }
 }
 </script>
+<style lang="scss">
+.form-flex-Box {
+  display: flex;
+  flex-wrap: wrap;
+  .el-form-item {
+    width: 25%;
+    height: 30px !important;
+    margin-bottom: 3px;
+  }
+  .el-input__inner, label, input {
+    height: 30px !important;
+  }
+  .el-date-editor--datetimerange {
+    input {
+      height: 28px !important;
+    }
+    i, span {
+      line-height: 23px;
+    }
+  }
+  .el-button {
+    height: 30px;
+    margin-top: 6px;
+    margin-left: 10px;
+    padding: 7px 15px
+  }
+ .el-form-item__content {
+   text-align: left;
+   height: 30px;
+ }
+}
+</style>
 

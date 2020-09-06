@@ -29,6 +29,7 @@
 </template>
 <script>
 export default {
+  name: 'DialogBox',
   props: {
     DialogConfig: {
       type: Object,
@@ -116,3 +117,12 @@ export default {
   }
 }
 </script>
+<style lang="scss">
+.dialog-box {
+  display:inline-block;
+  .dialog-bar {
+    padding-right: 10px;
+    background: #FFFFFF;
+  }
+}
+</style>
