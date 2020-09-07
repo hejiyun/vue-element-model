@@ -109,10 +109,12 @@ export default {
     },
     allSelect() {
       // 需要考虑连续点击全选时的动作
+      // 使用$set
       console.log('全选')
     },
     allCancel() {
       // 需要考虑连续点击全取消时的动作
+      // 使用$set
       console.log('全取消')
     },
     reset() {
@@ -120,6 +122,7 @@ export default {
       console.log('全部清空')
     },
     showSelect() {
+      // 使用$set
       console.log('展示已选选项, 并提供清除功能')
     },
     reRenderLi(value) {
