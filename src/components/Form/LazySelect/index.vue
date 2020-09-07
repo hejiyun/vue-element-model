@@ -23,12 +23,13 @@
           <el-col v-for="child in Titem.optionHeader" :span="24 / Titem.optionHeader.length" :key="child">{{ child.split('/')[0] || '' }}</el-col>
         </el-row>
         <ul v-loading="loading">
-          <li v-for="(child, index) in fileterList" :key="index">
+          <p v-if="fileterList.length === 0" class="text-center">未搜索到数据</p>
+          <li v-for="(child, index) in fileterList" v-else :key="index">
             <el-row class="select-drap-list-header p-li">
               <el-checkbox v-model="child['checked']" class="p-li-check"/>
               <el-col v-for="e in Titem.optionHeader" :span="24 / Titem.optionHeader.length" :key="child[e.split('/')[1]]">
                 <span :title="child[e.split('/')[1]]">
-                  {{ child[e.split('/')[1]] }}
+                  {{ child[e.split('/')[1]] || '无' }}
                 </span>
               </el-col>
             </el-row>
@@ -70,8 +71,15 @@ export default {
       }, this.item)
     }
   },
-  mounted() {
-    this.fileterList = this.Titem.AllList
+  watch: {
+    'Titem.AllList': {
+      handler: function(v, o) {
+        this.Titem.AllList.forEach(e => {
+          this.$set(e, 'checked', false)
+        })
+        this.fileterList = v
+      }
+    }
   },
   methods: {
     stopPropagation(e) {
@@ -126,12 +134,10 @@ export default {
               }
             }
           })
-          console.log(this.fileterList, 'zheli')
         }, 200)
       } else {
         this.loading = false
         this.fileterList = this.Titem.AllList
-        console.log(this.Titem.AllList, 'quanbu')
       }
     }
   }
@@ -182,6 +188,9 @@ export default {
     padding-left:8px;
     overflow-y: auto;
     overflow-x: hidden;
+    .text-center {
+      text-align: center;
+    }
     li {
       list-style-type:none;
     }

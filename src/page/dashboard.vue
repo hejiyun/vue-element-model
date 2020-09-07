@@ -9,7 +9,7 @@
 <script>
 import SearchForm from '@component/Form'
 import { LazySelect } from '@component/Form/ExportItem.js'
-import { getMenu } from '@/axios/common';
+import { getMenu, getWarehouse } from '@/axios/common';
 export default {
   components: {
     SearchForm
@@ -22,31 +22,17 @@ export default {
           label: '下拉框', // 左侧label标题
           prop: 'username', // 传出字段属性名
           width: 400, // drap显示框的宽度 ,单位px
-          optionHeader: ['仓库代码/code', '仓库名称/name', '仓库类型/type', '账套/accountSet'], // 数据列表头部信息
-          AllList: [ // 列表数据所有信息
-            {
-              name: '京东',
-              code: 'WH0129923',
-              type: 'B2B',
-              accountSet: '35'
-            },
-            {
-              name: '京东1',
-              code: 'WH01341',
-              type: 'B2B',
-              accountSet: '42'
-            },
-            {
-              name: '京东2',
-              code: 'WH03423',
-              type: 'B2B',
-              accountSet: '354'
-            }
-          ],
+          optionHeader: ['仓库代码/externalWarehouseCode', '仓库名称/warehouseName', '仓库类型/warehouseTypeName', '账套/warehouseAccount'], // 数据列表头部信息
+          AllList: [], // 列表数据所有信息
           cmp: LazySelect // 对应引用组件
         }
       ]
     }
+  },
+  async created() {
+    const res = await getWarehouse()
+    this.row[0].AllList = res.data.data.warehouseList
+    console.log(this.row)
   },
   mounted() {
     var user = sessionStorage.getItem('user');
