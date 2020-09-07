@@ -1,7 +1,7 @@
 <template>
   <el-col class="p-box">
     <el-input ref="lazyInput" v-model="value" @focus="showDrap = true;count++;" @blur="shouldHide" />
-    <div v-show="showDrap" class="select-drap-box" @click="focusInput" @mouseenter="count++" @mouseleave="shouldHide">
+    <div v-show="showDrap" :style="`width:${Titem.width}px`" class="select-drap-box" @click="focusInput" @mouseenter="count++" @mouseleave="shouldHide">
       <el-row class="select-drap-header">
         <el-col :span="6"><span @click="allSelect"><i class="el-icon-finished"/>全选</span></el-col>
         <el-col :span="6"><span @click="allCancel"><i class="el-icon-refresh-left"/>反选</span></el-col>
@@ -20,17 +20,17 @@
       </el-row>
       <el-row class="select-drap-list">
         <el-row class="select-drap-list-header">
-          <el-col :span="8">仓库代码</el-col>
-          <el-col :span="8">仓库名称</el-col>
-          <el-col :span="8">仓库类型</el-col>
+          <el-col v-for="child in Titem.optionHeader" :span="24 / Titem.optionHeader.length" :key="child">{{ child.split('/')[0] || '' }}</el-col>
         </el-row>
-        <ul>
-          <li v-for="o in 7" :key="o">
+        <ul v-loading="loading">
+          <li v-for="(child, index) in fileterList" :key="index">
             <el-row class="select-drap-list-header p-li">
-              <el-checkbox v-model="checked" class="p-li-check"/>
-              <el-col :span="8"><span title="仓库代码qweqwewqewqewqewqeqweqweqwewqe">仓库代码qweqwewqewqewqewqeqweqweqwewqe</span></el-col>
-              <el-col :span="8">仓库名称</el-col>
-              <el-col :span="8">仓库类型</el-col>
+              <el-checkbox v-model="child['checked']" class="p-li-check"/>
+              <el-col v-for="e in Titem.optionHeader" :span="24 / Titem.optionHeader.length" :key="child[e.split('/')[1]]">
+                <span :title="child[e.split('/')[1]]">
+                  {{ child[e.split('/')[1]] }}
+                </span>
+              </el-col>
             </el-row>
           </li>
         </ul>
@@ -40,15 +40,38 @@
 </template>
 <script>
 export default {
+  props: {
+    item: {
+      type: Object,
+      default: () => {
+        return {
+        }
+      }
+    }
+  },
   data() {
     return {
+      loading: false,
       value: '',
       searchValue: '',
       showDrap: false,
       count: 0,
       checked: false,
-      noFocus: true
+      noFocus: true,
+      fileterList: []
     }
+  },
+  computed: {
+    Titem() {
+      return Object.assign({
+        optionHeader: ['仓库代码/code', '仓库名称/name', '仓库类型/type'],
+        width: 350,
+        AllList: []
+      }, this.item)
+    }
+  },
+  mounted() {
+    this.fileterList = this.Titem.AllList
   },
   methods: {
     stopPropagation(e) {
@@ -92,7 +115,24 @@ export default {
       console.log('展示已选选项, 并提供清除功能')
     },
     reRenderLi(value) {
-      console.log('重新渲染li列表', value)
+      this.loading = true
+      if (value.trim() !== '') {
+        setTimeout(() => {
+          this.loading = false
+          this.fileterList = this.Titem.AllList.filter(item => {
+            for (var i = 0; i < this.Titem.optionHeader.length; i++) {
+              if (item[(this.Titem.optionHeader[i].split('/')[1])].toLowerCase().indexOf(value.toLowerCase()) > -1) {
+                return item
+              }
+            }
+          })
+          console.log(this.fileterList, 'zheli')
+        }, 200)
+      } else {
+        this.loading = false
+        this.fileterList = this.Titem.AllList
+        console.log(this.Titem.AllList, 'quanbu')
+      }
     }
   }
 }
@@ -102,9 +142,8 @@ export default {
   position: relative;
   width: 100%;
   height: 30px;
-  z-index:99999;
+  z-index:100;
   .select-drap-box {
-    width: 350px;
     border: 1px solid #ccc;
     border-radius: 5px;
     background-color:white;

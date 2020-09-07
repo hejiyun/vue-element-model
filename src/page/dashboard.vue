@@ -19,27 +19,31 @@ export default {
       sysUserName: '',
       row: [
         {
-          label: '下拉框',
-          prop: 'username',
-          multiple: true,
-          setDefaultValue: '选项2',
-          options: [{
-            value: '选项1',
-            label: '黄金糕'
-          }, {
-            value: '选项2',
-            label: '双皮奶'
-          }, {
-            value: '选项3',
-            label: '蚵仔煎'
-          }, {
-            value: '选项4',
-            label: '龙须面'
-          }, {
-            value: '选项5',
-            label: '北京烤鸭'
-          }],
-          cmp: LazySelect
+          label: '下拉框', // 左侧label标题
+          prop: 'username', // 传出字段属性名
+          width: 400, // drap显示框的宽度 ,单位px
+          optionHeader: ['仓库代码/code', '仓库名称/name', '仓库类型/type', '账套/accountSet'], // 数据列表头部信息
+          AllList: [ // 列表数据所有信息
+            {
+              name: '京东',
+              code: 'WH0129923',
+              type: 'B2B',
+              accountSet: '35'
+            },
+            {
+              name: '京东1',
+              code: 'WH01341',
+              type: 'B2B',
+              accountSet: '42'
+            },
+            {
+              name: '京东2',
+              code: 'WH03423',
+              type: 'B2B',
+              accountSet: '354'
+            }
+          ],
+          cmp: LazySelect // 对应引用组件
         }
       ]
     }
