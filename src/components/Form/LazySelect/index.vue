@@ -3,9 +3,10 @@
     <el-input ref="lazyInput" v-model="value" @focus="showDrap = true;count++;" @blur="shouldHide" />
     <div v-show="showDrap" class="select-drap-box" @click="focusInput" @mouseenter="count++" @mouseleave="shouldHide">
       <el-row class="select-drap-header">
-        <el-col :span="8"><span @click="allSelect"><i class="el-icon-finished"/>全选</span></el-col>
-        <el-col :span="8"><span @click="reset"><i class="el-icon-full-screen p-i"><span class="p-aX">×</span></i>清空</span></el-col>
-        <el-col :span="8"><span @click="showSelect"><i class="el-icon-view"/>已选</span></el-col>
+        <el-col :span="6"><span @click="allSelect"><i class="el-icon-finished"/>全选</span></el-col>
+        <el-col :span="6"><span @click="allCancel"><i class="el-icon-refresh-left"/>反选</span></el-col>
+        <el-col :span="6"><span @click="reset"><i class="el-icon-full-screen p-i"><span class="p-aX">×</span></i>清空</span></el-col>
+        <el-col :span="6"><span @click="showSelect"><i class="el-icon-view"/>已选</span></el-col>
       </el-row>
       <el-row class="select-drap-search">
         <el-input
@@ -76,10 +77,15 @@ export default {
       }
     },
     allSelect() {
+      // 需要考虑连续点击全选时的动作
       console.log('全选')
     },
+    allCancel() {
+      // 需要考虑连续点击全取消时的动作
+      console.log('全取消')
+    },
     reset() {
-      // 给出二次确认提示框
+      // 给出二次确认提示框,需要考虑连续点击清空时的动作
       console.log('全部清空')
     },
     showSelect() {
@@ -96,10 +102,13 @@ export default {
   position: relative;
   width: 100%;
   height: 30px;
+  z-index:99999;
   .select-drap-box {
+    width: 350px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    box-shadow:0 0 0 2px rgba(51,153,255,.2)
+    background-color:white;
+    box-shadow:0 0 0 2px rgba(51,153,255,.2);
   }
   .select-drap-header {
     margin: 10px 0;
@@ -111,6 +120,9 @@ export default {
     .el-col >span {
       cursor: pointer;
     }
+    .el-col > span:hover {
+      color: #409EFF
+    }
    i {
     margin-right: 10px;
    }
@@ -118,7 +130,7 @@ export default {
     position: relative;
       .p-aX {
         position: absolute;
-        top:0;
+        top:-1px;
         left: 15%;
       }
     }
