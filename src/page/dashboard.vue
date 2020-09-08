@@ -1,7 +1,7 @@
 <template>
   <div class="dashboard-style">
     <el-row>欢迎您 {{ sysUserName }}</el-row>
-    <SearchForm :options="row"/>
+    <SearchForm :options="row" @search="search"/>
     <el-button @click="getMenus">点我</el-button>
     <el-row class="footer-div">copyright @ 昆山宝唯信息科技有限公司上海分公司</el-row>
   </div>
@@ -32,7 +32,6 @@ export default {
   async created() {
     const res = await getWarehouse()
     this.row[0].AllList = res.data.data.warehouseList
-    console.log(this.row)
   },
   mounted() {
     var user = sessionStorage.getItem('user');
@@ -42,6 +41,9 @@ export default {
     }
   },
   methods: {
+    search(params) {
+      console.log(params)
+    },
     async getMenus() {
       const res = await getMenu()
       console.log(res);
