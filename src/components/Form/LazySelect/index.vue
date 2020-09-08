@@ -1,6 +1,6 @@
 <template>
   <el-col class="p-box">
-    <el-input ref="lazyInput" v-model="value" @focus="showDrap = true;count++;" @blur="shouldHide" />
+    <el-input ref="lazyInput" v-model="value" readonly @focus="showDrap = true;count++;" @blur="shouldHide" />
     <div v-show="showDrap" :style="`width:${Titem.width}px`" class="select-drap-box" @click="focusInput" @mouseenter="count++" @mouseleave="shouldHide">
       <el-row class="select-drap-header">
         <el-col :span="6"><span @click="allSelect"><i class="el-icon-finished"/>全选</span></el-col>

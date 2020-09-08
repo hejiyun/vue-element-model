@@ -30,6 +30,7 @@ export default {
         optionHeader: ['仓库代码/code', '仓库名称/name', '仓库类型/type'],
         width: 350,
         codeIndex: 0,
+        nameIndex: 1,
         AllList: []
       }, this.item)
     }
@@ -46,11 +47,13 @@ export default {
     selectList: {
       handler(v, o) {
         const str = this.Titem.optionHeader[this.Titem.codeIndex].split('/')[1]
+        const name = this.Titem.optionHeader[this.Titem.nameIndex].split('/')[1]
         const arr = []
         v.forEach(e => {
           arr.push(e[str])
         })
         this.$emit('updateValue', arr)
+        this.value = v.length ? `${v[0][name].substring(0, 4)}... + ${v.length - 1}` : ''
       },
       deep: true
     }
@@ -118,7 +121,6 @@ export default {
       }
       str = null
       this.selectList = newJson
-      console.log(this.selectList.length)
       // 函数结尾讲该次操作名称记为全选
       this.operationName = 'allSelect'
     },
