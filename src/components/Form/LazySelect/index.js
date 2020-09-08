@@ -38,10 +38,7 @@ export default {
   watch: {
     'Titem.AllList': {
       handler: function(v, o) {
-        this.Titem.AllList.forEach(e => {
-          this.$set(e, 'checked', false)
-        })
-        this.fileterList = v
+        this.setList(v)
       }
     },
     selectList: {
@@ -58,7 +55,16 @@ export default {
       deep: true
     }
   },
+  mounted() {
+    this.setList(this.Titem.AllList)
+  },
   methods: {
+    setList(v) {
+      v.forEach(e => {
+        this.$set(e, 'checked', false)
+      })
+      this.fileterList = v
+    },
     stopPropagation(e) {
       e = e || window.event;
       if (e.stopPropagation) { // W3C阻止冒泡方法
