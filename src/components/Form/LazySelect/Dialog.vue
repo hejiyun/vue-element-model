@@ -31,8 +31,8 @@
     </el-row>
     <span style="textAlign:right; color:red;">当前删除项：{{ leng }}</span>
     <span slot="footer" class="dialog-footer">
-      <el-button @click="cancel">取 消</el-button>
-      <el-button type="primary" @click="comfirm">确 定</el-button>
+      <el-button :disabled="disabled" @click="cancel">取 消</el-button>
+      <el-button :disabled="disabled" type="primary" @click="comfirm">确 定</el-button>
     </span>
   </el-dialog>
 </template>
@@ -59,6 +59,7 @@ export default {
   data() {
     return {
       dialogVisible: this.showDialog,
+      disabled: false,
       selectList: []
     };
   },
@@ -76,7 +77,6 @@ export default {
     },
     data: {
       handler(v, o) {
-        console.log(v, '123')
         this.selectList = JSON.parse(JSON.stringify(v))
       },
       deep: true
@@ -90,10 +90,18 @@ export default {
       this.$emit('update:showDialog', false)
     },
     cancel() {
+      this.disabled = true
+      setTimeout(() => {
+        this.disabled = false
+      }, 1000)
       this.dialogVisible = false
       this.$emit('close')
     },
     comfirm() {
+      this.disabled = true
+      setTimeout(() => {
+        this.disabled = false
+      }, 1000)
       this.dialogVisible = false
       this.$emit('close', this.delList)
     }

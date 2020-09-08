@@ -125,10 +125,12 @@ export default {
     },
     reset() {
       this.visible = false;
-      this.selectList = []
-      this.Titem.AllList.forEach(e => {
-        this.$set(e, 'checked', false)
-      })
+      if (this.selectList.length) {
+        this.selectList = []
+        this.Titem.AllList.forEach(e => {
+          this.$set(e, 'checked', false)
+        })
+      }
     },
     hideTest() {
       this.count--
