@@ -29,6 +29,7 @@ export default {
       return Object.assign({
         optionHeader: ['仓库代码/code', '仓库名称/name', '仓库类型/type'],
         width: 350,
+        codeIndex: 0,
         AllList: []
       }, this.item)
     }
@@ -44,7 +45,12 @@ export default {
     },
     selectList: {
       handler(v, o) {
-        this.$emit('updateValue', v)
+        const str = this.Titem.optionHeader[this.Titem.codeIndex].split('/')[1]
+        const arr = []
+        v.forEach(e => {
+          arr.push(e[str])
+        })
+        this.$emit('updateValue', arr)
       },
       deep: true
     }
@@ -78,7 +84,7 @@ export default {
     // 单个点击修改值
     checkChange(val, child) {
       this.operationName = 'checked'
-      let str = this.Titem.optionHeader[0].split('/')[1]
+      let str = this.Titem.optionHeader[this.Titem.codeIndex].split('/')[1]
       // 单个点击复选框时, 只需要判断true为添加, false为移除即可
       if (val) {
         this.selectList.push(child)
@@ -98,7 +104,7 @@ export default {
       // 两个数组对象合并去重
       const arr = [...this.selectList, ...this.fileterList]; // 两个数组对象合并
       const newJson = []; // 盛放去重后数据的新数组
-      const str = this.Titem.optionHeader[0].split('/')[1]
+      let str = this.Titem.optionHeader[this.Titem.codeIndex].split('/')[1]
       for (let index = 0; index < arr.length; index++) {
         let flag = true
         for (let index1 = 0; index1 < newJson.length; index1++) {
@@ -110,7 +116,9 @@ export default {
           newJson.push(arr[index])
         }
       }
+      str = null
       this.selectList = newJson
+      console.log(this.selectList.length)
       // 函数结尾讲该次操作名称记为全选
       this.operationName = 'allSelect'
     },
@@ -119,7 +127,7 @@ export default {
       if (this.operationName === 'allCancel' || this.operationName === '') {
         return
       }
-      let str = this.Titem.optionHeader[0].split('/')[1]
+      let str = this.Titem.optionHeader[this.Titem.codeIndex].split('/')[1]
       this.fileterList.forEach(e => {
         this.$set(e, 'checked', false)
         // 同步到selectList中
@@ -146,7 +154,7 @@ export default {
     dialogClose(list) {
       this.count--
       if (list && list.length) {
-        let str = this.Titem.optionHeader[0].split('/')[1]
+        let str = this.Titem.optionHeader[this.Titem.codeIndex].split('/')[1]
         list.forEach(e => {
           // 在这里需要重置掉allList中的checked属性, 因为fliterList与allList是同步的数据
           for (let index = 0; index < this.Titem.AllList.length; index++) {
