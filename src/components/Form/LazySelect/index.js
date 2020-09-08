@@ -92,19 +92,25 @@ export default {
       if (this.operationName === 'allSelect') {
         return
       }
-      let str = this.Titem.optionHeader[0].split('/')[1]
-      const arr = []
       this.fileterList.forEach(e => {
         this.$set(e, 'checked', true)
-        this.selectList.forEach(item => {
-          if (item[str] !== e[str]) {
-            arr.push(e)
-          }
-        })
       })
-      // 同步到selectList中, 需要考虑selectList中是否包含当前选项
-      this.selectList = [...this.selectList, ...arr]
-      str = null
+      // 两个数组对象合并去重
+      const arr = [...this.selectList, ...this.fileterList]; // 两个数组对象合并
+      const newJson = []; // 盛放去重后数据的新数组
+      const str = this.Titem.optionHeader[0].split('/')[1]
+      for (let index = 0; index < arr.length; index++) {
+        let flag = true
+        for (let index1 = 0; index1 < newJson.length; index1++) {
+          if (newJson[index1][str] === arr[index][str]) {
+            flag = false
+          }
+        }
+        if (flag) {
+          newJson.push(arr[index])
+        }
+      }
+      this.selectList = newJson
       // 函数结尾讲该次操作名称记为全选
       this.operationName = 'allSelect'
     },
@@ -131,6 +137,7 @@ export default {
           this.$set(e, 'checked', false)
         })
       }
+      this.operationName = 'reset'
     },
     hideTest() {
       this.count--
@@ -153,6 +160,7 @@ export default {
           this.selectList = this.selectList.filter(item => item[str] !== e[str])
         })
         str = null
+        this.operationName = 'delete'
       }
       this.focusInput()
     },
