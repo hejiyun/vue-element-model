@@ -11,7 +11,7 @@ export { default as TextArea } from './TextArea'
 export { default as SelectC } from './Select'
 
 // 快捷筛选下拉列表选择器组件
-export { default as LazySelect } from './LazySelect'
+export { default as LazySelect } from './LazySelect/index.vue'
 
 // 层级关联下拉列表选择器组件
 export { default as ConnectSelect } from './ConnectSelect'

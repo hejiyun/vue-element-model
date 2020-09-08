@@ -55,7 +55,7 @@
   </el-col>
 </template>
 <script>
-import jsMixin from './index'
+import jsMixin from './lazySelect.js'
 import Dialog from './Dialog'
 export default {
   components: {
@@ -65,5 +65,5 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
- @import "./index.scss";
+ @import "./lazySelect.scss";
 </style>
