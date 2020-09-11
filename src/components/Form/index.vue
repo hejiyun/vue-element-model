@@ -1,8 +1,8 @@
 <template>
   <el-form ref="form" :model="form" class="form-flex-Box" label-width="80px">
     <el-form-item v-for="(x, idx) in options" :label="x.label" :prop="x.prop" :key="idx">
-      <component v-if="!x.slot" ref="formItem" :item="x" :is="x.cmp" @updateValue="updateValue($event, x.prop)"/>
-      <slot v-else :params="x" :name="x.prop"/>
+      <component v-if="!x.operate" ref="formItem" :item="x" :is="x.cmp" @updateValue="updateValue($event, x.prop)"/>
+      <slot v-else :params="form" :name="x.prop"/>
     </el-form-item>
     <el-button size="mini" type="primary" @click="submit">查询</el-button>
     <el-button size="mini" type="primary" @click="reset">重置</el-button>

@@ -292,8 +292,8 @@ export default {
     }
     .content-container {
       flex: 1;
-      // overflow-y: hidden;
-      overflow-x: scroll;
+      overflow-y: scroll;
+      // overflow-x: scroll;
       padding: 20px;
       .nav-tabs {
         font-size: 12px;

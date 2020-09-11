@@ -25,10 +25,11 @@
       :key="index"
       :fixed="item.fixed"
       :sortable="item.sort"
-      :width="item.width || ''"
+      :width="item.width || null"
+      show-overflow-tooltip
       align="center">
       <template slot-scope="scope">
-        <slot v-if="item.operation" :row="scope.row" :name="item.prop"/>
+        <slot v-if="item.operate" :row="scope.row" :name="item.prop"/>
         <span v-else>{{ scope.row[item.prop] }}</span>
       </template>
     </el-table-column>
@@ -161,3 +162,49 @@ export default {
   }
 }
 </script>
+<style lang="scss">
+.el-table th.is-left {
+  background: rgb(81,187,248);
+  color:#fff
+}
+.el-table__body-wrapper {
+  height: 400px;
+  overflow-y: auto;
+}
+.el-table td, .el-table th {
+  padding:12px !important;
+}
+.el-table__body-wrapper::-webkit-scrollbar {
+  width:6px;
+  background: #ebeef5;
+}
+.el-table__body-wrapper::-webkit-scrollbar-thumb {
+  border-radius: 3px;
+  background: #ccc;
+  height:120px;
+}
+.el-table__body-wrapper::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+  background: rgba(255,255,255, 1);
+}
+body .el-table th.gutter{   /*解决el-table加了gutter后 边框出现白边*/
+    display: table-cell!important;
+}
+.slot::-webkit-scrollbar{
+    width: 2px;
+}
+.slot::-webkit-scrollbar-thumb{
+    border-radius: 2px;
+    height: 50px;
+    background: #eee;
+}
+.slot::-webkit-scrollbar-track{
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+    border-radius: 2px;
+    background: rgba(0,0,0,0.4);
+}
+body .el-table th.gutter{
+  display: table-cell!important;
+}
+</style>

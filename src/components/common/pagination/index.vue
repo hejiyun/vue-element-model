@@ -76,6 +76,7 @@ export default {
           }
         }
       })
+      this.$emit('loading', false)
       this.$emit('query', result.list)
     },
     // 请求数据
@@ -99,6 +100,7 @@ export default {
       } else {
         axiosBase['params'] = this.sendParams
       }
+      this.$emit('loading', true)
       const res = await this.$axios(axiosBase)
       this.processing(res.data)
     },
