@@ -15,13 +15,9 @@ instance.interceptors.request.use(
     loadingCount++
     // 判定请求参数中属性noload为true的http请求,视为不需要加载loading动画,
     const noload = JSON.parse(sessionStorage.getItem('noload'))
-    if (!noload) {
-      Vue.prototype.$mloading.show()
-    }
+    !noload && Vue.prototype.$mloading.show()
     sessionStorage.removeItem('noload')
-    if (getToken()) {
-      config.headers['Authorization'] = getToken()
-    }
+    getToken() && (config.headers['Authorization'] = getToken())
     // showLoading.loading()
     // 让每个请求携带token-- ['X-Token']为自定义key 请根据实际情况自行修改
     // config.headers['Authorization'] = getToken()
@@ -29,9 +25,7 @@ instance.interceptors.request.use(
   },
   error => {
     loadingCount--
-    if (loadingCount === 0) {
-      Vue.prototype.$mloading.hide()
-    }
+    loadingCount === 0 && Vue.prototype.$mloading.hide()
     // 请求错误时做些事
     return Promise.reject(error.response);
   }
@@ -42,17 +36,13 @@ instance.interceptors.response.use(
   response => {
     // 在拿到请求后, 去除loading状态
     loadingCount--
-    if (loadingCount === 0) {
-      Vue.prototype.$mloading.hide()
-    }
+    loadingCount === 0 && Vue.prototype.$mloading.hide()
     // 1.成功
     return Promise.resolve(response);
   },
   async error => {
     loadingCount--
-    if (loadingCount === 0) {
-      Vue.prototype.$mloading.hide()
-    }
+    loadingCount === 0 && Vue.prototype.$mloading.hide()
     // 失败,在拿到请求后, 去除loading状态
     if (error.response.data.errorCode === '4010') {
       // 先判断是不是跳转到登录页
@@ -106,9 +96,7 @@ const get = (url, params, config) => {
     url: url,
     params: params
   }
-  if (!config) {
-    config = {}
-  }
+  !config && (config = {})
   axiosBase = Object.assign(axiosBase, config)
   return instance(axiosBase)
 }
@@ -124,9 +112,7 @@ const post = (url, params, config) => {
     url: url,
     data: params
   }
-  if (!config) {
-    config = {}
-  }
+  !config && (config = {})
   axiosBase = Object.assign(axiosBase, config)
   return instance(axiosBase)
 }

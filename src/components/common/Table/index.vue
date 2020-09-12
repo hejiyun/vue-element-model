@@ -84,9 +84,7 @@ export default {
     },
     getData() {
       // 合并行, 判断的变量值, 需要提供针对合并的属性
-      if (this.Config.mergeTable) {
-        this.dealTable(this.Config.tableData)
-      }
+      this.Config.mergeTable && this.dealTable(this.Config.tableData)
     },
     changeCellStyle(data) {
       const arr = this.Config.changeCell
@@ -96,9 +94,7 @@ export default {
       }
       // 如果需要改变的是列的颜色, 传入changeCellType: background,   默认为color模式.
       for (let i = 0; i < arr.length; i++) {
-        if (data.columnIndex === arr[i]) {
-          return color
-        }
+        return data.columnIndex === arr[i] && color
       }
     },
     toggleSelection(rows) {
@@ -121,13 +117,9 @@ export default {
       table.forEach((v, index) => {
         if (v[this.Config.mergeTable] && v[this.Config.mergeTable].length) {
           v[this.Config.mergeTable].forEach((subV, i, typeData) => {
-            if (i === typeData.length - 1) {
-              typeIndex.push(typeData.length) // 类型循环完成后把数据长度存起来
-            }
+            i === typeData.length - 1 &&  typeIndex.push(typeData.length) // 类型循环完成后把数据长度存起来
             for (var k in v) {
-              if (k !== this.Config.mergeTable) {
-                subV[k] = v[k]
-              }
+              k !== this.Config.mergeTable && (subV[k] = v[k])
             }
             getDate.push(subV)
           })
@@ -149,13 +141,17 @@ export default {
         if (columnIndex > this.Config.mergeTableColumnIndex[0]) {
           if (row.nameIndex) {
             return [row.nameIndex, 1]
-          } else return [0, 0]
+          } else {
+            return [0, 0]
+          }
         }
       } else {
         if (columnIndex < this.Config.mergeTableColumnIndex[1] && columnIndex > this.Config.mergeTableColumnIndex[0]) {
           if (row.nameIndex) {
             return [row.nameIndex, 1]
-          } else return [0, 0]
+          } else {
+            return [0, 0]
+          } 
         }
       }
     }

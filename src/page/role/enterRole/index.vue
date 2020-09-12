@@ -48,9 +48,7 @@ export default {
     },
     hadlerClick(row) {
       this.DialogConfig.options.forEach(e => {
-        if (row.hasOwnProperty(e.prop)) {
-          this.$set(e, 'setDefaultValue', row[e.prop])
-        }
+        row.hasOwnProperty(e.prop) && this.$set(e, 'setDefaultValue', row[e.prop])
       })
       this.showDialog = true
     },
