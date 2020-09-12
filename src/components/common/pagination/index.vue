@@ -93,8 +93,12 @@ export default {
         this.sendParams = { ...resetParams, ...params }
       }
       this.$emit('loading', true)
-      const res = await this.Config.request(this.sendParams)
-      this.processing(res.data)
+      try {
+        const res = await this.Config.request(this.sendParams)
+        this.processing(res.data)
+      } catch (error) {
+        this.$emit('loading', false)
+      }
     },
     // 翻页
     handleCurrentChange(val) {

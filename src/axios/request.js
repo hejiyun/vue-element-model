@@ -115,7 +115,7 @@ const get = (url, params, config) => {
 
 const post = (url, params, config) => {
   // 在内部通过传递进来的值使用session判断本次请求是否需要loading动画
-  if (params['noload']) {
+  if (params && params['noload']) {
     sessionStorage.setItem('noload', true);
     delete params['noload']
   }
