@@ -1,6 +1,6 @@
 <template>
-  <el-form ref="form" :model="form" class="form-flex-Box" label-width="80px">
-    <el-form-item v-for="(x, idx) in options" :label="x.label" :prop="x.prop" :key="idx">
+  <el-form ref="SearchRuleForm" :model="form" class="form-flex-Box" label-width="80px">
+    <el-form-item v-for="(x, idx) in options" :label="x.label" :prop="x.prop" :rules="x.rules" :key="idx">
       <component v-if="!x.operate" ref="formItem" :item="x" :is="x.cmp" @updateValue="updateValue($event, x.prop)"/>
       <slot v-else :params="form" :name="x.prop"/>
     </el-form-item>
@@ -31,16 +31,23 @@ export default {
   methods: {
     // 在控件值发生变化时, 更新父组件中对应的值
     updateValue(e, prop) {
-      this.form[prop] = typeof e === 'string' ? e.trim() : e
+      this.$set(this.form, prop, typeof e === 'string' ? e.trim() : e)
     },
     // 重置表单值属性
     reset() {
+      this.$refs['SearchRuleForm'].resetFields()
       this.$refs.formItem.forEach(item => {
         item.reset()
       })
     },
     submit() {
-      this.$emit('search', this.form)
+       this.$refs['SearchRuleForm'].validate((valid) => {
+          if (valid) {
+            this.$emit('search', this.form)
+          } else {
+            return false;
+          }
+        });
     },
     // 初始化同步设置默认值
     setDefaultValue() {

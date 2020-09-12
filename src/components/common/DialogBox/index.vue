@@ -12,8 +12,8 @@
       @open="open"
       center
       @close="handleClose">
-      <el-form ref="form" :model="form" class="dialog-bar" label-width="80px">
-        <el-form-item v-for="(x, idx) in Config.options" :label="x.label" :prop="x.prop" :key="idx">
+      <el-form ref="dialogBoxForm" :model="form" class="dialog-bar" label-width="80px">
+        <el-form-item v-for="(x, idx) in Config.options" :label="x.label" :prop="x.prop" :rules="x.rules" :key="idx">
           <component v-if="!x.operate" ref="dialogFormItem" :item="x" :is="x.cmp" @updateValue="updateValue($event, x.prop)"/>
           <slot v-else :params="x" :name="x.prop"/>
         </el-form-item>
@@ -67,7 +67,7 @@ export default {
   methods: { // 方法
     // 在控件值发生变化时, 更新父组件中对应的值
     updateValue(e, prop) {
-      this.form[prop] = typeof e === 'string' ? e.trim() : e
+      this.$set(this.form, prop, typeof e === 'string' ? e.trim() : e)
     },
     // 初始化同步设置默认值
     setDefaultValue() {
@@ -87,6 +87,7 @@ export default {
     },
     reset() {
       this.dialogVisible = false
+      this.$refs['dialogBoxForm'].resetFields()
       // 重置时, 调取各子组件本身reset方法
       this.$refs.dialogFormItem && this.$refs.dialogFormItem.forEach(item => {
         item.reset()
@@ -108,7 +109,14 @@ export default {
     },
     // 点击查询调用函数
     DialogConfirm() {
-      this.$emit('DialogConfirm', this.form)
+       this.$refs['dialogBoxForm'].validate((valid) => {
+          if (valid) {
+            this.$emit('DialogConfirm', this.form)
+          } else {
+            return false;
+          }
+        });
+      
     }
   }
 }

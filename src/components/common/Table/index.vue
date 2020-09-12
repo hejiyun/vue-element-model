@@ -78,6 +78,12 @@ export default {
   created() {
     this.getData()
   },
+  beforeUpdate(){
+    this.$nextTick(() => { 
+      //在数据加载完，重新渲染表格,去除因重新计算高度导致的上下抖动问题
+      this.$refs['multipleTable'].doLayout();
+    })
+  },
   methods: {
     getSortList(column) {
       this.$emit('getSortList', column)

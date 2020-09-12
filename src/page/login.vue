@@ -77,7 +77,6 @@ export default {
             systemId: 10,
             noload: true
           };
-          this
           loginIn(params).then(res => {
             const { data } = res;
             this.logining = false;
