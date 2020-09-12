@@ -1,7 +1,5 @@
 <template>
   <div class="dialog-box">
-    <!-- 按钮 -->
-    <el-button :type="Config.buttonType" @click="openDailog">{{ Config.buttonText }}</el-button>
     <!-- 弹窗 -->
     <el-dialog
       :append-to-body="true"
@@ -11,11 +9,12 @@
       :title="Config.dialogText"
       :close-on-click-modal="false"
       :close-on-press-escape="false"
+      @open="open"
       center
       @close="handleClose">
       <el-form ref="form" :model="form" class="dialog-bar" label-width="80px">
         <el-form-item v-for="(x, idx) in Config.options" :label="x.label" :prop="x.prop" :key="idx">
-          <component v-if="!x.slot" ref="dialogFormItem" :item="x" :is="x.cmp" @updateValue="updateValue($event, x.prop)"/>
+          <component v-if="!x.operate" ref="dialogFormItem" :item="x" :is="x.cmp" @updateValue="updateValue($event, x.prop)"/>
           <slot v-else :params="x" :name="x.prop"/>
         </el-form-item>
       </el-form>
@@ -54,8 +53,6 @@ export default {
         options: [],
         cancelText: '取消',
         confirmText: '提交',
-        buttonType: 'primary',
-        buttonText: '弹窗按钮',
         widthPercent: 30,
         dialogText: '',
         hasFooter: true
@@ -78,7 +75,7 @@ export default {
       this.$nextTick(() => {
         const arr = this.$refs.dialogFormItem
         this.Config.options.forEach((item, index) => {
-          if (this.form[item.prop] === undefined || this.form[item.prop] === null || this.form[item.prop] === '') {
+          if (!this.form[item.prop] || !this.form[item.prop].length) {
             if (item.setDefaultValue) {
               // 因为各子组件使用value与form无model双向绑定关系, 所以需要在更新form值时,同步更新子组件value值
               this.form[item.prop] = item.setDefaultValue
@@ -106,8 +103,7 @@ export default {
     handleClose(done) {
       this.$emit('update:showDialog', false)
     },
-    openDailog() {
-      this.$emit('open')
+    open() {
       this.setDefaultValue()
     },
     // 点击查询调用函数

@@ -11,29 +11,51 @@
         <span>{{ scope.row.roleNames.join(',') || scope.row.roleNames[0] }}</span>
       </template>
     </HtmlPage>
+    <DialogBox 
+    :DialogConfig="DialogConfig" 
+    :showDialog.sync="showDialog"
+    @DialogConfirm="edit"/>
   </div>
 </template>
 <script>
 import SearchBar from './searchBar'
 import HtmlPage from '@component/pageCommon/listCommon'
-import { config } from './bd'
+import { config, DialogConfig } from './bd'
+import { getRoleList } from '@/axios/enterRole';
+import DialogBox from 'common/DialogBox'
 export default {
   name: 'EnterRole',
   components: {
     HtmlPage,
-    SearchBar
+    SearchBar,
+    DialogBox
   },
   data() {
     return {
-      config: config
+      config: config,
+      DialogConfig: DialogConfig,
+      showDialog: false
     }
+  },
+  async mounted() {
+    const res = await getRoleList()
+    console.log(res.data.list)
+    this.DialogConfig.options[2].options = res.data.list
   },
   methods: {
     search(params) {
       this.$refs.targetPage.getList(params)
     },
     hadlerClick(row) {
-      console.log(row)
+      this.DialogConfig.options.forEach(e => {
+        if (row.hasOwnProperty(e.prop)) {
+          this.$set(e, 'setDefaultValue', row[e.prop])
+        }
+      })
+      this.showDialog = true
+    },
+    edit(event) {
+      console.log(event)
     }
   }
 }

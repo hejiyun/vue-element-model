@@ -1,3 +1,6 @@
+import { InputC, SelectC} from '@component/Form/ExportItem.js'
+import { getTableList } from '@/axios/enterRole';
+
 const config = {
   editSearchBar: true,
   tableCofig: {
@@ -23,16 +26,42 @@ const config = {
       {
         label: '操作',
         prop: 'btn',
-        operate: true,
-        width: '390'
+        operate: true
       }
     ],
     tableData: []
   },
   pageConfig: {
-    url: '/api/internal/user/list?page=1&limit=20',
-    method: 'post'
+    request: getTableList
   }
 }
 
-export { config }
+const DialogConfig = {
+ options:[ 
+   {
+    label: '用户',
+    prop:'userName',
+    cmp: InputC,
+    disabled: true,
+    setDefaultValue: ''
+  },
+  {
+    label: '账户属性',
+    prop:'id',
+    cmp: InputC,
+    disabled: true,
+    setDefaultValue: ''
+  },
+  {
+    label: '角色',
+    prop: 'roleCodes',
+    cmp: SelectC,
+    multiple: true,
+    options: [],
+    mapping: ['roleName', 'roleCode'],
+    setDefaultValue: ''
+  }
+]
+}
+
+export { config, DialogConfig }

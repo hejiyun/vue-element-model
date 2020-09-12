@@ -40,9 +40,10 @@ export default {
       return Object.assign({
         pageSizeList: [10, 20, 50, 100],
         layout: 'total, sizes, prev, pager, next, jumper',
-        url: '',
-        method: 'get',
-        noGetList: false
+        noGetList: false,
+        request: function() {
+          return
+        }
       }, this.pageConfig)
     }
   },
@@ -91,17 +92,8 @@ export default {
       if (params) {
         this.sendParams = { ...resetParams, ...params }
       }
-      const axiosBase = {
-        method: this.Config.method,
-        url: this.Config.url
-      }
-      if (this.Config.method === 'post') {
-        axiosBase['data'] = this.sendParams
-      } else {
-        axiosBase['params'] = this.sendParams
-      }
       this.$emit('loading', true)
-      const res = await this.$axios(axiosBase)
+      const res = await this.Config.request(this.sendParams)
       this.processing(res.data)
     },
     // 翻页
