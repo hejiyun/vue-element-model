@@ -388,26 +388,6 @@ const routes = [
     ]
   },
   {
-    path: '/finance',
-    component: () => import('@page/home.vue'),
-    single: false,
-    name: '财务管理',
-    meta: {
-      keepAlive: true // 不需要缓存
-    },
-    iconCls: 'el-icon-pie-chart', // 图标样式class
-    children: [
-      {
-        path: 'jitFinance',
-        name: 'JIT财务报表',
-        component: () => import('@page/finance/jitFinance'),
-        meta: {
-          keepAlive: true // 不需要缓存
-        }
-      }
-    ]
-  },
-  {
     path: '/basicArchives',
     component: () => import('@page/home.vue'),
     single: false,
