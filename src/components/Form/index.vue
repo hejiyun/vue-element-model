@@ -41,13 +41,13 @@ export default {
       })
     },
     submit() {
-       this.$refs['SearchRuleForm'].validate((valid) => {
-          if (valid) {
-            this.$emit('search', this.form)
-          } else {
-            return false;
-          }
-        });
+      this.$refs['SearchRuleForm'].validate((valid) => {
+        if (valid) {
+          this.$emit('search', this.form)
+        } else {
+          return false;
+        }
+      });
     },
     // 初始化同步设置默认值
     setDefaultValue() {

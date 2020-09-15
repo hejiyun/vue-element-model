@@ -11,10 +11,10 @@
         <span>{{ scope.row.roleNames.join(',') || scope.row.roleNames[0] }}</span>
       </template>
     </HtmlPage>
-    <DialogBox 
-    :DialogConfig="DialogConfig" 
-    :showDialog.sync="showDialog"
-    @DialogConfirm="edit"/>
+    <DialogBox
+      :dialog-config="DialogConfig"
+      :show-dialog.sync="showDialog"
+      @DialogConfirm="edit"/>
   </div>
 </template>
 <script>

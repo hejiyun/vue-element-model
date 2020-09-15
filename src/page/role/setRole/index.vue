@@ -1,6 +1,6 @@
 <template>
   <div class="set-role">
-      <HtmlPage ref="targetPage" :page-config="config">
+    <HtmlPage ref="targetPage" :page-config="config">
       <template v-slot:searchBar>
         <el-button type="primary" @click="addDialog = true">新建角色</el-button>
       </template>
@@ -10,20 +10,20 @@
         <el-button type="text" @click="del(scope.row)">删除</el-button>
       </template>
     </HtmlPage>
-    <DialogBox 
-    :DialogConfig="addRoleConfig" 
-    :showDialog.sync="addDialog"
-    @DialogConfirm="add"/>
-    <DialogBox 
-    :DialogConfig="DialogConfig" 
-    :showDialog.sync="showDialog"
-    @DialogConfirm="editRole"/>
+    <DialogBox
+      :dialog-config="addRoleConfig"
+      :show-dialog.sync="addDialog"
+      @DialogConfirm="add"/>
+    <DialogBox
+      :dialog-config="DialogConfig"
+      :show-dialog.sync="showDialog"
+      @DialogConfirm="editRole"/>
   </div>
 </template>
 <script>
 import HtmlPage from '@component/pageCommon/listCommon'
 import { config, DialogConfig, addRoleConfig } from './bd'
-import { getRoleList } from '@/axios/setRole';
+// import { getRoleList } from '@/axios/setRole';
 import DialogBox from 'common/DialogBox'
 export default {
   name: 'SetRole',
@@ -38,7 +38,7 @@ export default {
       DialogConfig: DialogConfig, // 设置角色弹窗
       addRoleConfig: addRoleConfig, // 新建角色弹窗
       showDialog: false
-      
+
     }
   },
   beforeDestroy() {

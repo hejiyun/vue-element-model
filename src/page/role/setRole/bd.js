@@ -1,4 +1,4 @@
-import { InputC,TextArea } from '@component/Form/ExportItem.js'
+import { InputC, TextArea } from '@component/Form/ExportItem.js'
 import { getTableList } from '@/axios/setRole';
 
 const config = {
@@ -39,52 +39,52 @@ const config = {
     request: getTableList
   }
 }
- const addRoleConfig = {
-    options:[ 
-        {
-         label: '角色名称',
-         prop:'roleName',
-         cmp: InputC,
-         rules:{
-             required: true, message: '请输入角色名称', trigger: 'blur' 
-          }
-       },
-       {
-         label: '角色英文名',
-         prop:'roleCode',
-         cmp: InputC,
-         rules:{
-            required: true, message: '请输入角色英文名', trigger: 'blur' 
-         }
-       },
-       {
-         label: '角色描述',
-         prop: 'remark',
-         cmp: TextArea,
-         rules:{
-            required: true, message: '请填写角色描述', trigger: 'blur' 
-         }
-       }
-     ]
+const addRoleConfig = {
+  options: [
+    {
+      label: '角色名称',
+      prop: 'roleName',
+      cmp: InputC,
+      rules: {
+        required: true, message: '请输入角色名称', trigger: 'blur'
+      }
+    },
+    {
+      label: '角色英文名',
+      prop: 'roleCode',
+      cmp: InputC,
+      rules: {
+        required: true, message: '请输入角色英文名', trigger: 'blur'
+      }
+    },
+    {
+      label: '角色描述',
+      prop: 'remark',
+      cmp: TextArea,
+      rules: {
+        required: true, message: '请填写角色描述', trigger: 'blur'
+      }
+    }
+  ]
 
- }
+}
 const DialogConfig = {
- options:[ 
-   {
-    label: '角色名称',
-    prop:'roleName',
-    cmp: InputC,
-    disabled: true,
-    setDefaultValue: ''
-  },
-  {
-    label: '账户属性',
-    prop:'id',
-    cmp: InputC,
-    disabled: true,
-    setDefaultValue: ''
-  }
-]
+  options: [
+    {
+      label: '角色名称',
+      prop: 'roleName',
+      cmp: InputC,
+      disabled: true,
+      setDefaultValue: ''
+    },
+    {
+      label: '账户属性',
+      prop: 'id',
+      cmp: InputC,
+      disabled: true,
+      setDefaultValue: ''
+    }
+  ]
 }
 
 export { config, DialogConfig, addRoleConfig }

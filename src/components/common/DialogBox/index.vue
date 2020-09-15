@@ -9,8 +9,8 @@
       :title="Config.dialogText"
       :close-on-click-modal="false"
       :close-on-press-escape="false"
-      @open="open"
       center
+      @open="open"
       @close="handleClose">
       <el-form ref="dialogBoxForm" :model="form" class="dialog-bar" label-width="80px">
         <el-form-item v-for="(x, idx) in Config.options" :label="x.label" :prop="x.prop" :rules="x.rules" :key="idx">
@@ -109,14 +109,13 @@ export default {
     },
     // 点击查询调用函数
     DialogConfirm() {
-       this.$refs['dialogBoxForm'].validate((valid) => {
-          if (valid) {
-            this.$emit('DialogConfirm', this.form)
-          } else {
-            return false;
-          }
-        });
-      
+      this.$refs['dialogBoxForm'].validate((valid) => {
+        if (valid) {
+          this.$emit('DialogConfirm', this.form)
+        } else {
+          return false;
+        }
+      });
     }
   }
 }

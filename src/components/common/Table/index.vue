@@ -78,9 +78,9 @@ export default {
   created() {
     this.getData()
   },
-  beforeUpdate(){
-    this.$nextTick(() => { 
-      //在数据加载完，重新渲染表格,去除因重新计算高度导致的上下抖动问题
+  beforeUpdate() {
+    this.$nextTick(() => {
+      // 在数据加载完，重新渲染表格,去除因重新计算高度导致的上下抖动问题
       this.$refs['multipleTable'].doLayout();
     })
   },
@@ -123,7 +123,7 @@ export default {
       table.forEach((v, index) => {
         if (v[this.Config.mergeTable] && v[this.Config.mergeTable].length) {
           v[this.Config.mergeTable].forEach((subV, i, typeData) => {
-            i === typeData.length - 1 &&  typeIndex.push(typeData.length) // 类型循环完成后把数据长度存起来
+            i === typeData.length - 1 && typeIndex.push(typeData.length) // 类型循环完成后把数据长度存起来
             for (var k in v) {
               k !== this.Config.mergeTable && (subV[k] = v[k])
             }
@@ -157,7 +157,7 @@ export default {
             return [row.nameIndex, 1]
           } else {
             return [0, 0]
-          } 
+          }
         }
       }
     }

@@ -1,4 +1,4 @@
-import { get, post } from './request'
+import { get } from './request'
 
 // 获取列表信息接口
 const getTableList = (params) => get(`/api/api/v1/role`, params)
