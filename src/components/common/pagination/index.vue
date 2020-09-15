@@ -47,10 +47,8 @@ export default {
   },
   created() {
     if (this.Config.baseList.length) {
-      console.log(this.Config.baseList)
       this.$set(this.sendParams, this.Config.baseList[0], 1)
       this.$set(this.sendParams, this.Config.baseList[1], 10)
-      console.log(this.sendParams)
       this.sendParams[this.Config.baseList[1]] = this.Config.pageSizeList[0]
     } else {
       this.sendParams = {
@@ -102,7 +100,6 @@ export default {
           pageNum: this.sendParams.pageNum
         }
       }
-      console.log(resetParams)
       // 同名属性后面的覆盖前面的
       if (params) {
         this.sendParams = { ...resetParams, ...params }
