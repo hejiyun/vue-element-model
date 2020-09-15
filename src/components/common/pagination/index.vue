@@ -2,9 +2,9 @@
   <div class="page-bar">
     <el-pagination
       :small="false"
-      :current-page="sendParams.pageNum"
+      :current-page="Config.baseList.length ? sendParams[Config.baseList[0]] : sendParams.pageNum"
       :page-sizes="Config.pageSizeList"
-      :page-size="sendParams.pageSize"
+      :page-size="Config.baseList.length ? sendParams[Config.baseList[1]] : sendParams.pageSize"
       :total="totalPage"
       :url="Config.api"
       :method="Config.method"
@@ -28,10 +28,7 @@ export default {
   },
   data() {
     return {
-      sendParams: {
-        pageSize: 10,
-        pageNum: 1
-      },
+      sendParams: {},
       totalPage: 0
     }
   },
@@ -40,6 +37,7 @@ export default {
       return Object.assign({
         pageSizeList: [10, 20, 50, 100],
         layout: 'total, sizes, prev, pager, next, jumper',
+        baseList: [],
         noGetList: false,
         request: function() {
           return
@@ -48,7 +46,17 @@ export default {
     }
   },
   created() {
-    if (this.Config.pageSizeList && this.Config.pageSizeList.length > 0) {
+    if (this.Config.baseList.length) {
+      console.log(this.Config.baseList)
+      this.$set(this.sendParams, this.Config.baseList[0], 1)
+      this.$set(this.sendParams, this.Config.baseList[1], 10)
+      console.log(this.sendParams)
+      this.sendParams[this.Config.baseList[1]] = this.Config.pageSizeList[0]
+    } else {
+      this.sendParams = {
+        pageSize: 10,
+        pageNum: 1
+      }
       this.sendParams.pageSize = this.Config.pageSizeList[0]
     }
   },
@@ -84,10 +92,17 @@ export default {
     async getList(params) {
       // 分页器请求不加载loading动画
       sessionStorage.setItem('noload', true);
-      const resetParams = {
-        pageSize: this.sendParams.pageSize,
-        pageNum: this.sendParams.pageNum
+      let resetParams = {}
+      if (this.Config.baseList.length) {
+        this.$set(resetParams, this.Config.baseList[0], this.sendParams[this.Config.baseList[0]])
+        this.$set(resetParams, this.Config.baseList[1], this.sendParams[this.Config.baseList[1]])
+      } else {
+        resetParams = {
+          pageSize: this.sendParams.pageSize,
+          pageNum: this.sendParams.pageNum
+        }
       }
+      console.log(resetParams)
       // 同名属性后面的覆盖前面的
       if (params) {
         this.sendParams = { ...resetParams, ...params }
@@ -102,12 +117,20 @@ export default {
     },
     // 翻页
     handleCurrentChange(val) {
-      this.sendParams.pageNum = val
+      if (this.Config.baseList.length) {
+        this.sendParams[this.Config.baseList[0]] = val
+      } else {
+        this.sendParams.pageNum = val
+      }
       this.getList()
     },
     // 设置每页显示的条数
     handleSizeChange(val) {
-      this.sendParams.pageSize = val
+      if (this.Config.baseList.length) {
+        this.sendParams[this.Config.baseList[1]] = val
+      } else {
+        this.sendParams.pageSize = val
+      }
       this.getList()
     }
   }

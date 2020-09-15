@@ -32,6 +32,7 @@ const config = {
     tableData: []
   },
   pageConfig: {
+    baseList: ['page', 'limit'],
     request: getTableList
   }
 }

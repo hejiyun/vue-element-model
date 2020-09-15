@@ -55,16 +55,16 @@ export default {
   computed: {
     Config() {
       return Object.assign({
-        tableHeader: [],
-        expand: false,
-        mergeTable: '',
-        mergeTableColumnIndex: [],
-        tableData: [],
-        checkFlag: false,
-        height: 0,
-        changeCell: [],
-        changeCellColor: 'red',
-        changeCellType: 'color'
+        tableHeader: [], // 表头
+        expand: false, // expand 同element
+        mergeTable: '', // 合并表格, 传递合并属性字段, 应为数组类型
+        mergeTableColumnIndex: [], // 合并列index
+        tableData: [], // 表格数据源
+        checkFlag: false, // 多选
+        height: 0, // 表格 基于视图差高度  :height="`calc(100vh - ${Config.height}px)`"
+        changeCell: [], // 改变列样式
+        changeCellColor: 'red', // 默认红色
+        changeCellType: 'color' // 默认改变列颜色
       }, this.tableCofig)
     }
   },
