@@ -33,7 +33,7 @@ const config = {
   },
   pageConfig: {
     baseList: ['page', 'limit'],
-    request: getTableList
+    request: getTableList // 请求方法
   }
 }
 

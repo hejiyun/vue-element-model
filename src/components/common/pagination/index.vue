@@ -35,11 +35,11 @@ export default {
   computed: {
     Config() {
       return Object.assign({
-        pageSizeList: [10, 20, 50, 100],
-        layout: 'total, sizes, prev, pager, next, jumper',
-        baseList: [],
-        noGetList: false,
-        request: function() {
+        pageSizeList: [10, 20, 50, 100], // 每页多少条
+        layout: 'total, sizes, prev, pager, next, jumper', // 分页器格式, 这里默认全部, 可以自己修改
+        baseList: [], // 传递, page, limit取值数组, 定义传递参数属性名, 第一个参数为当前页, 第二个参数为条数
+        noGetList: false, // 第一次是否发送请求
+        request: function() { // 请求数据的方法请求
           return
         }
       }, this.pageConfig)

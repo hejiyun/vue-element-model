@@ -44,10 +44,10 @@ export default {
   computed: {
     Config() {
       return Object.assign({
-        editSearchBar: false,
-        searchBar: [],
-        tableCofig: {},
-        pageConfig: {}
+        editSearchBar: false, // 控制是否自定义编辑搜素模块, 自定义则searchBar不会渲染
+        searchBar: [], // 搜素模块
+        tableCofig: {}, // 表格模块
+        pageConfig: {} // 分页器模块
       }, this.pageConfig)
     }
   },

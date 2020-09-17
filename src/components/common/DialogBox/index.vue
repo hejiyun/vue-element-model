@@ -53,9 +53,9 @@ export default {
         options: [],
         cancelText: '取消',
         confirmText: '提交',
-        widthPercent: 30,
-        dialogText: '',
-        hasFooter: true
+        widthPercent: 30, // 弹窗宽度
+        dialogText: '', // 弹窗标题
+        hasFooter: true // 是否有底部按钮
       }, this.DialogConfig)
     }
   },
