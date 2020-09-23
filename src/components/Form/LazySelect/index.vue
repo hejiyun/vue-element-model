@@ -1,6 +1,6 @@
 <template>
-  <el-col class="p-box">
-    <el-input ref="lazyInput" v-model="value" readonly @focus="showDrap = true;count++;" @blur="shouldHide" />
+  <el-col class="lazy-select-p-box">
+    <el-input ref="lazyInput" v-model="value" :disabled="item.disabled" readonly @focus="showDrap = true;count++;" @blur="shouldHide" />
     <div v-show="showDrap" :style="`width:${Titem.width}px`" class="select-drap-box" @click="focusInput" @mouseenter="count++" @mouseleave="shouldHide">
       <el-row class="select-drap-header">
         <el-col :span="6"><span @click="allSelect"><i class="el-icon-finished"/>全选</span></el-col>
@@ -38,8 +38,8 @@
         </el-row>
         <ul v-loading="loading">
           <p v-if="fileterList.length === 0" class="text-center">未搜索到数据</p>
-          <li v-for="(child, index) in fileterList" v-else :key="index">
-            <el-row class="select-drap-list-header p-li">
+          <li v-for="(child, index) in fileterList" v-else :key="index" class=" p-li">
+            <el-row class="select-drap-list-header">
               <el-checkbox v-model="child['checked']" class="p-li-check" @change="checkChange($event, child)"/>
               <el-col v-for="e in Titem.optionHeader" :span="24 / Titem.optionHeader.length" :key="child[e.split('/')[1]]">
                 <span :title="child[e.split('/')[1]]">

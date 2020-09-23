@@ -61,7 +61,7 @@ export default {
       dialogVisible: this.showDialog,
       disabled: false,
       selectList: []
-    };
+    }
   },
   computed: {
     leng: function() {
@@ -106,5 +106,5 @@ export default {
       this.$emit('close', this.delList)
     }
   }
-};
+}
 </script>

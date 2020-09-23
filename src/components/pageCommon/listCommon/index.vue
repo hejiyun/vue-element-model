@@ -1,11 +1,11 @@
 <template>
   <div>
-    <SearchForm v-if="!Config.editSearchBar" :options="Config.searchBar" @submit="submit">
+    <SearchForm v-if="!Config.editSearchBar" :options="Config.searchBar" @search="search">
       <template v-for="item in Config.searchBar" slot-scope="scope" :slot="item.operate ? item.prop : null">
-        <slot v-if="item.operate" :params="scope.params" :name="`search-${item.prop}`"/>
+        <slot v-if="item.operate" :form="scope.params" :name="`search-${item.prop}`"/>
       </template>
       <template v-slot:btn="params">
-        <slot :params="params" name="search-btn"/>
+        <slot :params="params.params" name="search-btn"/>
       </template>
     </SearchForm>
     <slot v-else name="searchBar"/>
@@ -14,13 +14,13 @@
         <slot v-if="item.operate" :row="scope.row" :name="`table-${item.prop}`"/>
       </template>
     </TableCommon>
-    <Pagination ref="listCommonPage" :page-config="Config.pageConfig" @query="query" @loading="load"/>
+    <Pagination ref="listCommonPage" :page-config="Config.pageConfig" @getCount="getCount" @query="query" @loading="load"/>
   </div>
 </template>
 <script>
 import SearchForm from '@component/Form'
-import TableCommon from 'common/Table'
-import Pagination from 'common/pagination'
+import TableCommon from '@common/Table'
+import Pagination from '@common/pagination'
 export default {
   name: 'ListPageCommon',
   components: {
@@ -52,7 +52,7 @@ export default {
     }
   },
   methods: {
-    submit(params) {
+    search(params) {
       this.getList(params)
     },
     getList(params) {
@@ -63,6 +63,9 @@ export default {
     },
     load(B) {
       this.loading = B
+    },
+    getCount(count) {
+      this.$emit('getCount', count)
     }
   }
 }

@@ -12,10 +12,10 @@
       center
       @open="open"
       @close="handleClose">
-      <el-form ref="dialogBoxForm" :model="form" class="dialog-bar" label-width="80px">
+      <el-form ref="dialogBoxForm" :model="form" class="dialog-bar" label-width="120px">
         <el-form-item v-for="(x, idx) in Config.options" :label="x.label" :prop="x.prop" :rules="x.rules" :key="idx">
           <component v-if="!x.operate" ref="dialogFormItem" :item="x" :is="x.cmp" @updateValue="updateValue($event, x.prop)"/>
-          <slot v-else :params="x" :name="x.prop"/>
+          <slot v-else :params="x" :form="form" :name="x.prop"/>
         </el-form-item>
       </el-form>
       <span v-if="Config.hasFooter" slot="footer" class="dialog-footer">
@@ -82,7 +82,7 @@ export default {
               arr[index].value = item.setDefaultValue
             }
           }
-        });
+        })
       })
     },
     reset() {
@@ -113,9 +113,9 @@ export default {
         if (valid) {
           this.$emit('DialogConfirm', this.form)
         } else {
-          return false;
+          return false
         }
-      });
+      })
     }
   }
 }

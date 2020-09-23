@@ -12,8 +12,8 @@
     <el-option v-show="item.multiple && item.options.length > 0" label="全部" value="选项0"/>
     <el-option
       v-for="(e, index) in item.options"
-      :label="e.label || e[item.mapping[0]]"
-      :value="e.value || e[item.mapping[1]]"
+      :label="e.label || e[item.mapping[1]]"
+      :value="e.value || e[item.mapping[0]]"
       :key="index"/>
   </el-select>
 </template>
@@ -35,7 +35,7 @@ export default {
       const allValues = ['选项0']
       // 保留所有值
       for (const item of options) {
-        const value = item.value || item[mapping[1]]
+        const value = item.value || item[mapping[0]]
         allValues.push(value)
       }
       // 用来储存上一次的值，可以进行对比

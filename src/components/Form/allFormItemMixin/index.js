@@ -10,7 +10,7 @@ export default {
   data() {
     return {
       value: ''
-    };
+    }
   },
   created() {
     if (this.item.setDefaultValue) {
@@ -20,6 +20,11 @@ export default {
   watch: {
     value(v, o) {
       this.$emit('updateValue', this.value)
+    },
+    'item.setDefaultValue': {
+      handler(v, o) {
+        this.value = v
+      }
     }
   },
   methods: {
@@ -27,4 +32,4 @@ export default {
       this.value = ''
     }
   }
-};
+}

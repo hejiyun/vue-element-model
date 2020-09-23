@@ -139,7 +139,7 @@ export default {
       if (this.testRemove) {
         // 判断多文件/单文件采用不同保留方式
         this.Titem.multiple && this.Titem.fileList.push(options.file)
-        !this.Titem.multiple && this.Titem.fileList.splice(0, 1, options.file);
+        !this.Titem.multiple && this.Titem.fileList.splice(0, 1, options.file)
         // 将值传递给外部
         this.$emit('updateValue', this.Titem.fileList)
         // 重置是否允许文件保留变量

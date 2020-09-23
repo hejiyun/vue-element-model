@@ -1,9 +1,12 @@
-.p-box {
+.lazy-select-p-box {
   position: relative;
   width: 100%;
   height: 30px;
   z-index:100;
   .select-drap-box {
+    position: absolute;
+    top:30px;
+    left:0px;
     border: 1px solid #ccc;
     border-radius: 5px;
     background-color:white;
@@ -60,12 +63,10 @@
   }
   .p-li {
     position: relative;
-    .el-col:nth-child(2) {
-      padding-left: 20px
-    }
-    .p-li-check {
+    .p-li-check.el-checkbox {
       position: absolute;
-      top:0;
+      text-align: left;
+      top:-6px;
       left: 0;
       height: 40px;
       line-height: 40px;

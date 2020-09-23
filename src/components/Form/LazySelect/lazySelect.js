@@ -66,11 +66,11 @@ export default {
       this.fileterList = v
     },
     stopPropagation(e) {
-      e = e || window.event;
+      e = e || window.event
       if (e.stopPropagation) { // W3C阻止冒泡方法
-        e.stopPropagation();
+        e.stopPropagation()
       } else {
-        e.cancelBubble = true; // IE阻止冒泡方法
+        e.cancelBubble = true // IE阻止冒泡方法
       }
     },
     cFocus() {
@@ -111,8 +111,8 @@ export default {
         this.$set(e, 'checked', true)
       })
       // 两个数组对象合并去重
-      const arr = [...this.selectList, ...this.fileterList]; // 两个数组对象合并
-      const newJson = []; // 盛放去重后数据的新数组
+      const arr = [...this.selectList, ...this.fileterList] // 两个数组对象合并
+      const newJson = [] // 盛放去重后数据的新数组
       let str = this.Titem.optionHeader[this.Titem.codeIndex].split('/')[1]
       for (let index = 0; index < arr.length; index++) {
         let flag = true
@@ -146,7 +146,7 @@ export default {
       this.operationName = 'allCancel'
     },
     reset() {
-      this.visible = false;
+      this.visible = false
       if (this.selectList.length) {
         this.selectList = []
         this.Titem.AllList.forEach(e => {
