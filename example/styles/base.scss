@@ -1,0 +1,118 @@
+.app-main {
+    padding: 0 !important;
+    &>div {
+        border-top: 1px solid #C0C4CC;
+    }
+}
+.tags-view-container{
+    border: none !important;
+}
+.order-box{
+    padding: 0 !important;
+    border-bottom: none;
+}
+.navbar{
+    height: 36px !important;
+    line-height: 36px !important;
+}
+.navbar .right-menu{
+    position: absolute;
+    height:auto !important;
+    top:0;
+    right:0;
+}
+.navbar .right-menu .avatar-container .avatar-wrapper{
+    margin-top:0 !important;
+}
+.tags-view-container{
+    width: calc(100% - 80px) !important;
+    box-shadow:none !important;
+}
+.searchBox{
+    margin-top: 0 !important;
+    border: none;
+    margin-bottom: 0;
+    padding: 5px;
+    border-bottom: 1px solid #C0C4CC;
+}
+.page-bar{
+    text-align: right;
+    margin-top:8px !important;
+}
+.el-table--border td, .el-table--border th{
+    border-right:1px solid #cdcdcd !important;
+    border-bottom:1px solid #cdcdcd !important;
+}
+.el-table tr{
+    border-right:1px solid #cdcdcd !important;
+} 
+.el-table--border{
+    // height: 70vh;
+    overflow: scroll;
+    border-bottom:1px solid #cdcdcd !important;
+    border: 1px solid #DCDFE6;
+}
+.el-table--border::after, .el-table--group::after, .el-table::before{
+    background: none;
+}
+.menu-wrapper{
+    // border-bottom: 1px solid rgba(255, 255, 255,0.5);
+    .el-submenu__title{
+        height: 40px;
+        line-height: 40px;
+    }
+    .el-menu-item{
+        line-height: 35px;
+        height: 35px;
+        font-size: 12px !important;
+    }
+}
+#app .sidebar-container .svg-icon{
+    width: 0.8em;
+    height: 0.8em;
+}
+#app .sidebar-container .nest-menu .el-submenu > .el-submenu__title{
+    font-size: 13px !important;
+}
+#app .sidebar-container .el-submenu .is-active{
+    color: white !important;
+    background-color:rgba(255, 255, 255,0.25) !important;
+}
+#app .sidebar-container .el-submenu .el-menu-item:hover{
+    background-color:rgba(255, 255, 156,0.3) !important;
+}
+#app .sidebar-container .nest-menu .el-submenu > .el-submenu__title:hover{
+    background-color:rgba(255, 255, 156,0.3) !important;
+}
+#app .sidebar-container .el-submenu__title:hover{
+    background-color:rgba(255, 255, 156,0.3) !important;
+}
+// .el-radio-button--mini .el-radio-button__inner {
+//     min-width: 48px;
+// }
+// .navbar .right-menu .avatar-container .avatar-wrapper .el-icon-caret-bottom{
+//     top: 13px !important;
+// }
+// .el-dropdown-menu--mini{
+//     top:34px !important;
+//     left:inherit !important;
+//     right:10px !important;
+// }
+// .el-pagination{
+//     display:inline-block;
+// }
+// .mr{
+//     display:inline-block; 
+// }
+
+.el-table thead .cell{
+    line-height: 24px;
+}
+.el-table tbody .cell{
+    line-height: 16px;
+}
+@media screen and (min-height: 900px){
+    .el-table--border{
+        // height: 80vh;
+    }
+}

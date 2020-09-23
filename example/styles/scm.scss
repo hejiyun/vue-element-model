@@ -1,0 +1,137 @@
+.scmlist {
+    .el-table thead .cell {
+        line-height: 24px;
+        white-space: nowrap;
+        text-overflow: inherit;
+        overflow: inherit;
+        padding-left: 3px;
+        padding-right: 3px;
+    }
+
+    .el-table tbody .cell {
+        line-height: 16px;
+        white-space: nowrap;
+        padding-left: 10px;
+        padding-right: 10px;
+        text-overflow: inherit;
+        overflow: inherit;
+
+        p {
+            display: inline-block;
+        }
+    }
+
+    .el-table--mini td {
+        padding: 0;
+    }
+
+    .el-table--mini th {
+        padding: 3px;
+    }
+
+    .list-pages {
+        margin-top: 10px;
+    }
+
+    .showbox1 {
+        float: right;
+        color: #00ace6;
+        cursor: pointer;
+        line-height: initial;
+    }
+
+    .el-form-item--mini.el-form-item,
+    .el-form-item--small.el-form-item {
+        margin-bottom: 10px;
+    }
+
+    .el-form--label-left .el-form-item__label {
+        text-align: right;
+    }
+
+    .el-form-item--mini.el-form-item,
+    .el-form-item--small.el-form-item {
+        margin-bottom: 5px;
+    }
+
+    .pageOuter {
+        text-align: left;
+    }
+
+    .el-textarea__inner {
+        height: 48px !important;
+    }
+
+    .el-col-24 {
+        display: inline-block;
+        float: none;
+        width: auto;
+    }
+
+    .matInput {
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    .el-form--label-left .el-form-item__label {
+        display: inline-block;
+        float: none;
+        padding-left: 5px;
+    }
+
+    .el-form-item--mini .el-form-item__content {
+        display: inline-block;
+        // width: 120px;
+    }
+
+    .el-textarea {
+        width: auto;
+        vertical-align: middle;
+    }
+
+    .switchStock {
+
+        &>div {
+            width: auto !important;
+        }
+    }
+}
+
+.addscm {
+    .searchBox {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #efefef;
+        border-radius: 4px;
+    }
+
+    .el-form-item--mini.el-form-item,
+    .el-form-item--small.el-form-item {
+        margin-bottom: 10px;
+    }
+
+    .totalText {
+        line-height: 30px;
+    }
+
+    .el-table thead .cell {
+        line-height: 24px;
+        white-space: nowrap;
+        text-overflow: inherit;
+        overflow: inherit;
+        padding-left: 3px;
+        padding-right: 3px;
+    }
+
+    .el-table tbody .cell {
+        white-space: nowrap;
+        padding-left: 10px;
+        padding-right: 10px;
+        text-overflow: inherit;
+        overflow: inherit;
+    }
+
+    .el-table--mini th {
+        padding: 3px;
+    }
+}

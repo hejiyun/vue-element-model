@@ -1,0 +1,79 @@
+.finance {
+    .search-bar {
+        margin: 0;
+        border: none;
+        padding: 10px 10px 0px 10px;
+        background: #FFFFFF;
+        text-align: left;
+        .el-form-item--mini .el-form-item__content {
+          display: inline-block;
+          // width: 120px;
+        }
+    }
+
+    .pagination-container {
+        margin-top: 0;
+        padding: 8px 16px !important;
+        text-align: right;
+    }
+
+    .el-table thead .cell {
+        line-height: 24px;
+        white-space: nowrap;
+    }
+
+    .el-table tbody .cell {
+        line-height: 16px;
+        white-space: nowrap;
+    }
+    .el-form-item--mini.el-form-item, .el-form-item--small.el-form-item {
+        margin-bottom: 10px;
+    }
+    .el-form--label-left .el-form-item__label{
+        text-align: right;
+    }
+    .el-form-item--mini.el-form-item,
+    .el-form-item--small.el-form-item {
+      margin-bottom: 5px;
+    }
+  
+    .pageOuter {
+      text-align: left;
+    }
+  
+    .el-textarea__inner {
+      height: 48px !important;
+    }
+  
+    .el-col-24 {
+      display: inline-block;
+      float: none;
+      width: auto;
+    }
+  
+    .mat {
+      display: inline-block;
+    }
+  
+    .matSon {
+      display: inline-block;
+    }
+  
+    .matInput {
+      display: inline-block;
+      vertical-align: middle;
+    }
+  
+    .el-form--label-left .el-form-item__label {
+      display: inline-block;
+      float: none;
+      padding-left: 5px;
+    }
+  
+}
+.goods_detail{
+    .detail-col span{
+        font-size: 12px !important;
+        font-weight: initial !important;
+    } 
+}

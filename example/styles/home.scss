@@ -1,0 +1,35 @@
+.welcome{
+    height: calc(100vh - 84px) !important;
+    border: none !important;
+    .el-header{
+        border-top:1px solid #cdcdcd;
+    }
+    .el-footer{
+        text-align: center;
+    }
+}
+
+.creditDetail{
+    .detail-col span{
+        font-size: 12px !important;
+        font-weight: initial !important;
+    }
+}
+.OmsOrderDetail{
+    .detail-col span{
+        font-size: 12px !important;
+        font-weight: initial !important;
+    } 
+}
+.DeliveryDetail{
+    .detail-col span{
+        font-size: 12px !important;
+        font-weight: initial !important;
+    } 
+}
+.ReceiveDetail{
+    .detail-col span{
+        font-size: 12px !important;
+        font-weight: initial !important;
+    } 
+}

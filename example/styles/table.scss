@@ -1,0 +1,46 @@
+.bwtable {
+    border-bottom: 1px solid #cdcdcd !important;
+    border: 1px solid #DCDFE6;
+
+    table {
+        resize: none !important;
+    }
+
+    table thead th {
+        background: #204060;
+        color: white;
+    }
+
+    table tbody td,
+    table thead th {
+        text-align: center;
+        border-right: 1px solid #cdcdcd !important;
+        border-bottom: 1px solid #cdcdcd !important;
+    }
+
+    thead .cell {
+        white-space: nowrap;
+        width: auto;
+    }
+
+    tbody .cell {
+        line-height: 16px;
+        box-sizing: border-box;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        word-break: break-all;
+        padding-right: 10px;
+        width: auto;
+
+        .el-button--small {
+            padding: 0;
+        }
+    }
+    table .cell p{
+        text-overflow: ellipsis;
+        width: 100%;
+        overflow: hidden;
+    }
+
+}

@@ -1,0 +1,67 @@
+.newListBox {
+  display: block;
+  width:100%;
+  padding: 15px 40px;
+  
+  .dialog-row .el-col .el-col {
+    margin-bottom: 20px;
+  }
+  .mr {
+    margin: 10px 0;
+  }
+  .text-center {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  .ml {
+    margin-left: 10px
+  }
+  .position-relative {
+    position:relative
+  }
+  .font-size24 {
+    font-size: 24px;
+  }
+  .font-size18 {
+    font-size: 18px;
+  }
+  .drop-item-style {
+    border-bottom:1px solid #ccc;
+    width:100px
+  }
+  .box-radius {
+    text-align: center;
+    width:20px;
+    height: 20px;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+  }
+  .text-style {
+   padding: 10px;
+   border: 1px solid #ccc;
+   border-radius: 10px;
+  }
+  .blue-line{
+    width: 15px;
+    font-weight: 900;
+    color: blue;
+    display: inline-block;
+  }
+  .el-table thead .cell{
+    line-height: 24px;
+}
+.el-table tbody .cell{
+    line-height: 16px;
+    padding: 0;
+}
+.el-table--mini td, .el-table--mini th {
+  padding:  3px 0;
+}
+.dingwei {
+    position:absolute;
+    top:0;
+    left:-10px;
+    color:red
+  }
+}

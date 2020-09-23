@@ -1,0 +1,680 @@
+.stockExample {
+    .el-table--scrollable-y .el-table__body-wrapper {
+        min-height: 300px;
+    }
+
+    .el-form-item--mini.el-form-item,
+    .el-form-item--small.el-form-item {
+        margin-bottom: 10px;
+    }
+
+    .el-form--label-left .el-form-item__label {
+        text-align: right;
+    }
+
+    .el-form-item--mini.el-form-item,
+    .el-form-item--small.el-form-item {
+        margin-bottom: 5px;
+    }
+
+    .pageOuter {
+        text-align: left;
+    }
+
+    .el-textarea__inner {
+        height: 48px !important;
+    }
+
+    .el-col-24 {
+        display: inline-block;
+        float: none;
+        width: auto;
+    }
+
+    .matInput {
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    .el-form--label-left .el-form-item__label {
+        display: inline-block;
+        float: none;
+        padding-left: 5px;
+    }
+
+    .el-form-item--mini .el-form-item__content {
+        display: inline-block;
+        // width: 120px;
+    }
+
+    .el-textarea {
+        width: auto;
+        vertical-align: middle;
+    }
+
+    .switchStock {
+
+        &>div {
+            width: auto !important;
+        }
+    }
+}
+
+.PhysicalAllocation {
+    .el-table thead .cell {
+        line-height: 24px;
+        white-space: nowrap;
+        text-overflow: inherit;
+        overflow: inherit;
+        padding-left: 3px;
+        padding-right: 3px;
+    }
+
+    .el-table tbody .cell {
+        line-height: 16px;
+        white-space: nowrap;
+        padding-left: 10px;
+        padding-right: 10px;
+        text-overflow: inherit;
+        overflow: inherit;
+    }
+
+    .el-table--mini td {
+        padding: 0;
+    }
+
+    .el-table--mini th {
+        padding: 0;
+    }
+
+    .el-form-item--mini.el-form-item,
+    .el-form-item--small.el-form-item {
+        margin-bottom: 10px;
+    }
+
+    .el-form--label-left .el-form-item__label {
+        text-align: right;
+    }
+
+    .el-form-item--mini.el-form-item,
+    .el-form-item--small.el-form-item {
+        margin-bottom: 5px;
+    }
+
+    .pageOuter {
+        text-align: left;
+    }
+
+    .el-textarea__inner {
+        height: 48px !important;
+    }
+
+    .el-col-24 {
+        display: inline-block;
+        float: none;
+        width: auto;
+    }
+
+    .matInput {
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    .el-form--label-left .el-form-item__label {
+        display: inline-block;
+        float: none;
+        padding-left: 5px;
+    }
+
+    .el-form-item--mini .el-form-item__content {
+        display: inline-block;
+        // width: 120px;
+    }
+
+    .el-textarea {
+        width: auto;
+        vertical-align: middle;
+    }
+
+    .switchStock {
+
+        &>div {
+            width: auto !important;
+        }
+    }
+    .dialog_a .el-form-item--mini .el-form-item__content{
+        display: block;
+    }
+    .dialog_b{
+        .el-col-24 {
+            display: block;
+        }
+    }
+    .proportion{
+        .el-col-24 {
+            display: block;
+        }
+    }
+    .dialog_d{
+        .el-form-item--mini .el-form-item__content{
+            display: block;
+            width: auto;
+        }
+    }
+}
+
+.ChannelAllocation {
+    .el-table thead .cell {
+        line-height: 24px;
+        white-space: nowrap;
+        text-overflow: inherit;
+        overflow: inherit;
+        padding-left: 3px;
+        padding-right: 3px;
+    }
+
+    .el-table tbody .cell {
+        line-height: 16px;
+        white-space: nowrap;
+        padding-left: 10px;
+        padding-right: 10px;
+        text-overflow: inherit;
+        overflow: inherit;
+    }
+
+    .el-table--mini td {
+        padding: 0;
+    }
+
+    .el-table--mini th {
+        padding: 0;
+    }
+
+
+    .el-form-item--mini.el-form-item,
+    .el-form-item--small.el-form-item {
+        margin-bottom: 10px;
+    }
+
+    .el-form--label-left .el-form-item__label {
+        text-align: right;
+    }
+
+    .el-form-item--mini.el-form-item,
+    .el-form-item--small.el-form-item {
+        margin-bottom: 5px;
+    }
+
+    .pageOuter {
+        text-align: left;
+    }
+
+    .el-textarea__inner {
+        height: 48px !important;
+    }
+
+    .el-col-24 {
+        display: inline-block;
+        float: none;
+        width: auto;
+    }
+
+    .matInput {
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    .el-form--label-left .el-form-item__label {
+        display: inline-block;
+        float: none;
+        padding-left: 5px;
+    }
+
+    .el-form-item--mini .el-form-item__content {
+        display: inline-block;
+        // width: 120px;
+    }
+
+    .el-textarea {
+        width: auto;
+        vertical-align: middle;
+    }
+
+    .switchStock {
+
+        &>div {
+            width: auto !important;
+        }
+    }
+    .dialog_a .el-form-item--mini .el-form-item__content{
+        display: block;
+    }
+    .dialog_b{
+        .el-col-24 {
+            display: block;
+        }
+    }
+    .proportion{
+        .el-col-24 {
+            display: block;
+        }
+    }
+    .dialog_d{
+        .el-form-item--mini .el-form-item__content{
+            display: block;
+            width: auto;
+        }
+    }
+}
+
+.ChannelAllocationB2C {
+    .el-table thead .cell {
+        line-height: 24px;
+        white-space: nowrap;
+        text-overflow: inherit;
+        overflow: inherit;
+        padding-left: 3px;
+        padding-right: 3px;
+    }
+
+    .el-table tbody .cell {
+        line-height: 16px;
+        white-space: nowrap;
+        padding-left: 10px;
+        padding-right: 10px;
+        text-overflow: inherit;
+        overflow: inherit;
+    }
+
+    .el-table--mini td {
+        padding: 0;
+    }
+
+    .el-table--mini th {
+        padding: 0;
+    }
+
+    .el-form-item--mini.el-form-item,
+    .el-form-item--small.el-form-item {
+        margin-bottom: 10px;
+    }
+
+    .el-form--label-left .el-form-item__label {
+        text-align: right;
+    }
+
+    .el-form-item--mini.el-form-item,
+    .el-form-item--small.el-form-item {
+        margin-bottom: 5px;
+    }
+
+    .pageOuter {
+        text-align: left;
+    }
+
+    .el-textarea__inner {
+        height: 48px !important;
+    }
+
+    .el-col-24 {
+        display: inline-block;
+        float: none;
+        width: auto;
+    }
+
+    .matInput {
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    .el-form--label-left .el-form-item__label {
+        display: inline-block;
+        float: none;
+        padding-left: 5px;
+    }
+
+    .el-form-item--mini .el-form-item__content {
+        display: inline-block;
+        // width: 120px;
+    }
+
+    .el-textarea {
+        width: auto;
+        vertical-align: middle;
+    }
+
+    .switchStock {
+
+        &>div {
+            width: auto !important;
+        }
+    }
+    .dialog_a .el-form-item--mini .el-form-item__content{
+        display: block;
+    }
+    .dialog_b{
+        .el-col-24 {
+            display: block;
+        }
+    }
+    .proportion{
+        .el-col-24 {
+            display: block;
+        }
+    }
+    .dialog_d{
+        .el-form-item--mini .el-form-item__content{
+            display: block;
+            width: auto;
+        }
+    }
+}
+
+.ChannelAllocation {
+    .el-table thead .cell {
+        line-height: 24px;
+        white-space: nowrap;
+        text-overflow: inherit;
+        overflow: inherit;
+        padding-left: 3px;
+        padding-right: 3px;
+    }
+
+    .el-table tbody .cell {
+        line-height: 16px;
+        white-space: nowrap;
+        padding-left: 10px;
+        padding-right: 10px;
+        text-overflow: inherit;
+        overflow: inherit;
+    }
+
+    .el-table--mini td {
+        padding: 0;
+    }
+
+    .el-table--mini th {
+        padding: 0;
+    }
+
+    .el-form-item--mini.el-form-item,
+    .el-form-item--small.el-form-item {
+        margin-bottom: 10px;
+    }
+
+    .el-form--label-left .el-form-item__label {
+        text-align: right;
+    }
+
+    .el-form-item--mini.el-form-item,
+    .el-form-item--small.el-form-item {
+        margin-bottom: 5px;
+    }
+
+    .pageOuter {
+        text-align: left;
+    }
+
+    .el-textarea__inner {
+        height: 48px !important;
+    }
+
+    .el-col-24 {
+        display: inline-block;
+        float: none;
+        width: auto;
+    }
+
+    .matInput {
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    .el-form--label-left .el-form-item__label {
+        display: inline-block;
+        float: none;
+        padding-left: 5px;
+    }
+
+    .el-form-item--mini .el-form-item__content {
+        display: inline-block;
+        // width: 120px;
+    }
+
+    .el-textarea {
+        width: auto;
+        vertical-align: middle;
+    }
+
+    .switchStock {
+
+        &>div {
+            width: auto !important;
+        }
+    }
+    .dialog_a .el-form-item--mini .el-form-item__content{
+        display: block;
+    }
+    .dialog_b{
+        .el-col-24 {
+            display: block;
+        }
+    }
+    .proportion{
+        .el-col-24 {
+            display: block;
+        }
+    }
+    .dialog_d{
+        .el-form-item--mini .el-form-item__content{
+            display: block;
+            width: auto;
+        }
+    }
+}
+
+.ChannelAllocationBBC {
+    .el-table thead .cell {
+        line-height: 24px;
+        white-space: nowrap;
+        text-overflow: inherit;
+        overflow: inherit;
+        padding-left: 3px;
+        padding-right: 3px;
+    }
+
+    .el-table tbody .cell {
+        line-height: 16px;
+        white-space: nowrap;
+        padding-left: 10px;
+        padding-right: 10px;
+        text-overflow: inherit;
+        overflow: inherit;
+    }
+
+    .el-table--mini td {
+        padding: 0;
+    }
+
+    .el-table--mini th {
+        padding: 0;
+    }
+
+    .el-form-item--mini.el-form-item,
+    .el-form-item--small.el-form-item {
+        margin-bottom: 10px;
+    }
+
+    .el-form--label-left .el-form-item__label {
+        text-align: right;
+    }
+
+    .el-form-item--mini.el-form-item,
+    .el-form-item--small.el-form-item {
+        margin-bottom: 5px;
+    }
+
+    .pageOuter {
+        text-align: left;
+    }
+
+    .el-textarea__inner {
+        height: 48px !important;
+    }
+
+    .el-col-24 {
+        display: inline-block;
+        float: none;
+        width: auto;
+    }
+
+    .matInput {
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    .el-form--label-left .el-form-item__label {
+        display: inline-block;
+        float: none;
+        padding-left: 5px;
+    }
+
+    .el-form-item--mini .el-form-item__content {
+        display: inline-block;
+        // width: 120px;
+    }
+
+    .el-textarea {
+        width: auto;
+        vertical-align: middle;
+    }
+
+    .switchStock {
+
+        &>div {
+            width: auto !important;
+        }
+    }
+    .dialog_a .el-form-item--mini .el-form-item__content{
+        display: block;
+    }
+    .dialog_b{
+        .el-col-24 {
+            display: block;
+        }
+    }
+    .proportion{
+        .el-col-24 {
+            display: block;
+        }
+    }
+    .dialog_d{
+        .el-form-item--mini .el-form-item__content{
+            display: block;
+            width: auto;
+        }
+    }
+}
+
+.ChannelAllocationJIT {
+    .el-table thead .cell {
+        line-height: 24px;
+        white-space: nowrap;
+        text-overflow: inherit;
+        overflow: inherit;
+        padding-left: 3px;
+        padding-right: 3px;
+    }
+
+    .el-table tbody .cell {
+        line-height: 16px;
+        white-space: nowrap;
+        padding-left: 10px;
+        padding-right: 10px;
+        text-overflow: inherit;
+        overflow: inherit;
+    }
+
+    .el-table--mini td {
+        padding: 0;
+    }
+
+    .el-table--mini th {
+        padding: 0;
+    }
+
+    .el-form-item--mini.el-form-item,
+    .el-form-item--small.el-form-item {
+        margin-bottom: 10px;
+    }
+
+    .el-form--label-left .el-form-item__label {
+        text-align: right;
+    }
+
+    .el-form-item--mini.el-form-item,
+    .el-form-item--small.el-form-item {
+        margin-bottom: 5px;
+    }
+
+    .pageOuter {
+        text-align: left;
+    }
+
+    .el-textarea__inner {
+        height: 48px !important;
+    }
+
+    .el-col-24 {
+        display: inline-block;
+        float: none;
+        width: auto;
+    }
+
+    .matInput {
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    .el-form--label-left .el-form-item__label {
+        display: inline-block;
+        float: none;
+        padding-left: 5px;
+    }
+
+    .el-form-item--mini .el-form-item__content {
+        display: inline-block;
+        // width: 120px;
+    }
+
+    .el-textarea {
+        width: auto;
+        vertical-align: middle;
+    }
+
+    .switchStock {
+
+        &>div {
+            width: auto !important;
+        }
+    }
+    .dialog_a .el-form-item--mini .el-form-item__content{
+        display: block;
+    }
+    .dialog_b{
+        .el-col-24 {
+            display: block;
+        }
+    }
+    .proportion{
+        .el-col-24 {
+            display: block;
+        }
+    }
+    .dialog_d{
+        .el-form-item--mini .el-form-item__content{
+            display: block;
+            width: auto;
+        }
+    }
+}

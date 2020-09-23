@@ -1,0 +1,37 @@
+.GoodsChargeDetail {
+    border-top: 1px solid #cdcdcd;
+
+    .detailInfo {
+        padding-left: 10px;
+        width: 100%;
+
+        .detail-col {
+            width: 100%;
+            text-align: left;
+            display: flex;
+
+            p {
+                flex: 1;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                font-size: 12px;
+                line-height: 24px;
+
+                // font-weight: bold;
+                .info {
+                    padding-left: 10px;
+                    font-weight: initial;
+                }
+            }
+        }
+    }
+
+    .detailTitle {
+        margin-top: 3px;
+        padding-left: 10px;
+        margin-bottom: 3px;
+        font-weight: bold;
+    }
+
+}

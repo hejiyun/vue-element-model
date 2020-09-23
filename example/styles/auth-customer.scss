@@ -1,0 +1,59 @@
+.customer{
+    .filter-container{
+        padding-left: 15px !important;
+        border: 1px solid #cccccc;
+        margin-top: 5px !important;
+        margin-bottom: 5px !important;
+        background: #FFFFFF;
+        text-align: left;
+        border-radius: 0 !important;
+        border: none;
+
+        &>div{
+            display: inline-block;
+        }
+        .inputBox{
+            margin-left: 10px;
+            &>div{
+                margin-left: 10px; 
+            }
+            &>button{
+                margin-left: 10px; 
+            }
+        }
+
+        .filter-item{
+            vertical-align: inherit;
+            margin: 0;
+        }
+    }
+    .el-table__footer-wrapper, .el-table__header-wrapper{
+        min-width: 1200px;
+
+        table{
+            width: 100% !important;
+        }
+    }
+    .el-table__body-wrapper{
+        min-width: 1200px;
+        overflow-x: scroll;
+
+        table{
+            width: 100% !important;
+        }
+    }
+    .el-table thead .cell{
+        line-height: 24px;
+    }
+    .el-table tbody .cell{
+        line-height: 16px;
+        padding: 0;
+    }
+    .pagination-container{
+        margin-top: 0;
+        padding: 8px 16px !important;
+    }
+    .el-table--mini td, .el-table--mini th {
+        padding: 3px 0;
+    }
+}
